@@ -9,7 +9,8 @@ public class Ball : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField] private float power = 750f;
-    [SerializeField] private Slider slider;
+    
+    public float _speed = 5.0f;
 
     private void Start()
     {
@@ -22,5 +23,7 @@ public class Ball : MonoBehaviour
         {
             rb.AddForce(Vector3.forward * power);
         }
+
+        transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * _speed * Time.deltaTime);
     }
 }
