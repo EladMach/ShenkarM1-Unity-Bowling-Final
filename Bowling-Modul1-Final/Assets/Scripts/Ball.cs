@@ -8,9 +8,9 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody rb;
 
-    [SerializeField] private float power = 750f;
-    
-    public float _speed = 5.0f;
+    [Header("Variables")]
+     public float _power = 750f;
+     public float _speed = 5.0f;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            rb.AddForce(Vector3.forward * power);
+            rb.AddForce(Vector3.forward * _power);
         }
 
         transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * _speed * Time.deltaTime);
