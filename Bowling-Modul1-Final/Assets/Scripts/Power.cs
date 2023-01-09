@@ -2,51 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Power : MonoBehaviour
 {
-    public Image fillImage;
-    private Slider slider;
-
+    [Header("Variables")]
     public bool isPowerUp = true;
-    
-    public float fillSpeed = 0.5f;
+    public float powerValue;
+    public float throwPower;
+    public float fillSpeed = 20.0f;
+    public bool isCoroutineActive = true;
+
+    [Header("UI Elements")]
+    public Image fillImage;
+    public Slider slider;
+    public TextMeshProUGUI powerText;
+
 
     private void Start()
     {
-        slider = gameObject.GetComponent<Slider>();
-        slider.value = Mathf.Clamp(slider.value, 0.0f, 1.0f);
-
+        slider = GameObject.Find("PowerBar").GetComponent<Slider>();
+        slider.value = Mathf.Clamp(slider.value, 0.0f, 10.0f);
     }
 
     private void Update()
     {
         PowerBar();
+        powerValue = slider.value;
+
     }
 
 
-    void PowerBar()
+    public void PowerBar()
     {
-        StartCoroutine(PowerBarUp());       
+        StartCoroutine(PowerBarUp());   
+
+        powerText.text = "Power: " + slider.value.ToString("F0");
+        
+        if (isCoroutineActive == false)
+        {
+            throwPower = powerValue;
+        }
     }
     
     IEnumerator PowerBarUp()
     {
-        if (isPowerUp == true)
+        if (isCoroutineActive == true)
         {
-            slider.value += fillSpeed * Time.deltaTime;
-            yield return new WaitForSeconds(2.0f);
-            isPowerUp = false;
-        }        
+            if (isPowerUp == true)
+            {
+                slider.value += fillSpeed * Time.deltaTime;
+                yield return new WaitForSeconds(2.0f);
+                isPowerUp = false;
+            }
 
-        if (isPowerUp == false)
-        {
-            slider.value -= fillSpeed * Time.deltaTime;
-            yield return new WaitForSeconds(2.0f);
-            isPowerUp = true;
+            if (isPowerUp == false)
+            {
+                slider.value -= fillSpeed * Time.deltaTime;
+                yield return new WaitForSeconds(2.0f);
+                isPowerUp = true;
+            }
         }
-
-        yield return new WaitForSeconds(1.0f);
+ 
     }
 
 }  

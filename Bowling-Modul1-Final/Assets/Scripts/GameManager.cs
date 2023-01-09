@@ -6,19 +6,41 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Variables")]
+    public int _score;
+
+    [Header("UI Elements")]
     public Slider timeBar;
-    private float fillSpeed = 0.2f;
+    public TextMeshProUGUI timeText;
+
+
+    private float fillSpeed = 1.0f;
+    private Pin pinScript;
+    
+
+
     private void Start()
     {
-               
+             
     }
 
     private void Update()
     {
         TimerDown();
+        timeText.text = "Timer: " + timeBar.value.ToString("F0");
     }
     void TimerDown()
     {
         timeBar.value -= fillSpeed * Time.deltaTime;
+        if (timeBar.value == 0)
+        {
+            Debug.Log("Times Up!");
+            //load next turn
+        }
+    }
+
+    public void AddScore()
+    {
+        _score++;
     }
 }
