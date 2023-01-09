@@ -24,10 +24,7 @@ public class Pin : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(tag);
-    }
+    
 
 
 

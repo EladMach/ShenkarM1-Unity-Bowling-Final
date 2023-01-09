@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Variables")]
-    public int _score;
+    
 
     [Header("UI Elements")]
     public Slider timeBar;
@@ -39,8 +39,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddScore()
-    {
-        _score++;
-    }
+    
 }

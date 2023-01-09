@@ -17,6 +17,7 @@ TagManager:
   - Pin8
   - Pin9
   - Pin10
+  - ScoreGround
   layers:
   - Default
   - TransparentFX
