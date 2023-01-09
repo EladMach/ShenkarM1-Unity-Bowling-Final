@@ -6,5 +6,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public Slider timeBar;
+    private float fillSpeed = 0.2f;
+    private void Start()
+    {
+               
+    }
+
+    private void Update()
+    {
+        TimerDown();
+    }
+    void TimerDown()
+    {
+        timeBar.value -= fillSpeed * Time.deltaTime;
+    }
 }
