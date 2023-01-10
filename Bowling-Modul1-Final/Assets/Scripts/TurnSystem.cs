@@ -26,18 +26,31 @@ public class TurnSystem : MonoBehaviour
     private void Update()
     {
         StartCoroutine(Turn1());
+        StartCoroutine(Turn2());
     }
+
+    
 
     public IEnumerator Turn1()
     {
         turnIndex = Turns.Turn1;
-        turnScore[0] = scoreScript._currentScore;   
+        turnScore[0] = scoreScript._currentScore;
+        if (ball._throws == 2)
+        {
+            StopCoroutine(Turn1());
+        }
         yield return null;
     }
 
-    public void Turn2()
+    public IEnumerator Turn2()
     {
-        turnScore[1] = scoreScript._currentScore;
+        if (ball._throws == 2)
+        {   
+            turnIndex = Turns.Turn2;
+            turnScore[1] = scoreScript._currentScore;
+        }
+
+        yield return null;
     }
 
     public void Turn3()

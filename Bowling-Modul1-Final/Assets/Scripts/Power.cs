@@ -17,14 +17,14 @@ public class Power : MonoBehaviour
 
     [Header("UI Elements")]
     public Image fillImage;
-    public Slider slider;
+    public Slider powerBarSlider;
     public TextMeshProUGUI powerText;
 
 
     private void Start()
     {
-        slider = GameObject.Find("PowerBar").GetComponent<Slider>();
-        slider.value = Mathf.Clamp(slider.value, 0.0f, 10.0f);
+        powerBarSlider = GameObject.Find("PowerBar").GetComponent<Slider>();
+        powerBarSlider.value = Mathf.Clamp(powerBarSlider.value, 0.0f, 10.0f);
         ball = FindObjectOfType<Ball>();
 
         
@@ -32,18 +32,20 @@ public class Power : MonoBehaviour
 
     private void Update()
     {   
-        powerValue = slider.value;
+        powerValue = powerBarSlider.value;
         powerText.text = "Power: " + powerValue.ToString("F0");
 
         StartCoroutine(PowerBarUp());
         StartCoroutine(PowerBarDown());
+
+        
     }
 
     public IEnumerator PowerBarUp()
     {
         while (isPowerUp)
         {
-            slider.value += fillSpeed * Time.deltaTime;
+            powerBarSlider.value += fillSpeed * Time.deltaTime;
             yield return new WaitForSeconds(2.0f);
             isPowerUp = false;
         }
@@ -53,11 +55,12 @@ public class Power : MonoBehaviour
     {
         while (isPowerUp == false)
         {
-            slider.value -= fillSpeed * Time.deltaTime;
+            powerBarSlider.value -= fillSpeed * Time.deltaTime;
             yield return new WaitForSeconds(2.0f);
             isPowerUp = true;
         }
     }
-
+    
+    
   
 }  
