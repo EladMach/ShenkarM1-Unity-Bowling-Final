@@ -1823,7 +1823,7 @@ MonoBehaviour:
   fillSpeed: 5
   isCoroutineActive: 1
   fillImage: {fileID: 201811473}
-  slider: {fileID: 1117765028}
+  powerBarSlider: {fileID: 1117765028}
   powerText: {fileID: 1858746062}
 --- !u!1001 &1647361877
 PrefabInstance:

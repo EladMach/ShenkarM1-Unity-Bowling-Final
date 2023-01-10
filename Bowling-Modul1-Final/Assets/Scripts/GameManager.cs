@@ -25,9 +25,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {        
-        StartTimer();
-        StopTimer();
+    {          
+        StartCoroutine(TimerDown());
 
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
     }
@@ -38,29 +37,26 @@ public class GameManager : MonoBehaviour
             timeBar.value -= fillSpeed * Time.deltaTime;
         }
 
-        yield return null;
-    }
-
-
-    public void StartTimer()
-    {
-        StartCoroutine(TimerDown());
-    }
-    public void StopTimer()
-    {
         if (ball._isThrown == true)
         {
             isTimerOn = false;
-            StopCoroutine(TimerDown());
         }
 
         if (timeBar.value == 0)
         {
             isTimerOn = false;
-            StopCoroutine(TimerDown());
             Debug.Log("Times Up!");
-            
         }
+
+        if (ball._isThrown == false)
+        {
+            isTimerOn = true;     
+        }
+
+        yield return null;
     }
+
+
+    
     
 }

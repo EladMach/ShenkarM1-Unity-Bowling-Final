@@ -13,13 +13,17 @@ public class TurnSystem : MonoBehaviour
     public int[] turnScore = new int[3];
 
     private Ball ball;
+    private GameManager gameManager;
     private Power powerScript;
     private Score scoreScript;
+    private bool isCoroutineActive = true;
+
     private void Start()
     {
         ball = FindObjectOfType<Ball>();
         powerScript = FindObjectOfType<Power>();
         scoreScript = FindObjectOfType<Score>();
+        gameManager = FindObjectOfType<GameManager>();
         
     }
 
@@ -27,27 +31,35 @@ public class TurnSystem : MonoBehaviour
     {
         StartCoroutine(Turn1());
         StartCoroutine(Turn2());
+
+        
     }
 
     
 
     public IEnumerator Turn1()
     {
-        turnIndex = Turns.Turn1;
-        turnScore[0] = scoreScript._currentScore;
+        if (isCoroutineActive)
+        {
+            turnIndex = Turns.Turn1;
+            turnScore[0] = scoreScript._currentScore;
+        }
+
         if (ball._throws == 2)
         {
-            StopCoroutine(Turn1());
+            isCoroutineActive = false;
         }
+
         yield return null;
     }
 
     public IEnumerator Turn2()
     {
-        if (ball._throws == 2)
-        {   
+        if (ball._throws >= 2)
+        {
             turnIndex = Turns.Turn2;
             turnScore[1] = scoreScript._currentScore;
+            
         }
 
         yield return null;
