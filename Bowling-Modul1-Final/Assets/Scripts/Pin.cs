@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pin : MonoBehaviour
 {
-    public Rigidbody rb;
+    private Rigidbody rb;
     private Ball ball;
     private GameManager gameManager;
 
@@ -13,18 +13,30 @@ public class Pin : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        ball = GameObject.Find("Ball").GetComponent<Ball>();
+        
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        ball = FindObjectOfType<Ball>();
   
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        FreezePinPosition();
     }
 
-    
+    public void FreezePinPosition()
+    {
+        if (ball._isThrown == false)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
+        }
+        else if (ball._isThrown == true)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+        }
+    }
 
 
 

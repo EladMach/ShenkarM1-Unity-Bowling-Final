@@ -115,7 +115,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 0
+  m_CookingOptions: -1
   m_Mesh: {fileID: 4300000, guid: d159e9e3f7fe67447ab99587d2321ddc, type: 3}
 --- !u!114 &-7882621593437960699
 MonoBehaviour:
@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c3a52bd6367cd4180791226d6396e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 7704999629325722917}
 --- !u!1 &8985932047971997652
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +171,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1365739
-  m_Height: 0.39130872
-  m_Direction: 1
-  m_Center: {x: -0.020605728, y: 0.12080017, z: -0.092065826}
+  m_Radius: 0.13898157
+  m_Height: 0.3308941
+  m_Direction: 2
+  m_Center: {x: -0.053670477, y: 0.15914775, z: -0.0920659}

@@ -15,29 +15,52 @@ public class GameManager : MonoBehaviour
 
 
     private float fillSpeed = 1.0f;
-    private Pin pinScript;
-    
-
+    private bool isTimerOn = true;
+    private Ball ball;
+  
 
     private void Start()
     {
-             
+        ball = FindObjectOfType<Ball>();    
     }
 
     private void Update()
-    {
-        TimerDown();
+    {        
+        StartTimer();
+        StopTimer();
+
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
     }
-    void TimerDown()
+    public IEnumerator TimerDown()
     {
-        timeBar.value -= fillSpeed * Time.deltaTime;
-        if (timeBar.value == 0)
+        if (isTimerOn == true)
         {
-            Debug.Log("Times Up!");
-            //load next turn
+            timeBar.value -= fillSpeed * Time.deltaTime;
         }
+
+        yield return null;
     }
 
+
+    public void StartTimer()
+    {
+        StartCoroutine(TimerDown());
+    }
+    public void StopTimer()
+    {
+        if (ball._isThrown == true)
+        {
+            isTimerOn = false;
+            StopCoroutine(TimerDown());
+        }
+
+        if (timeBar.value == 0)
+        {
+            isTimerOn = false;
+            StopCoroutine(TimerDown());
+            Debug.Log("Times Up!");
+            
+        }
+    }
     
 }

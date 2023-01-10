@@ -6,8 +6,10 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+   
     public int _currentScore;
     public int _score;
+
     public TextMeshProUGUI scoreText;
 
     private void Start()
@@ -76,6 +78,6 @@ public class Score : MonoBehaviour
 
     }
 
-
+   
 
 }

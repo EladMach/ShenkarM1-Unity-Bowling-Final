@@ -12,6 +12,8 @@ public class Power : MonoBehaviour
     public float throwPower;
     public float fillSpeed = 20.0f;
     public bool isCoroutineActive = true;
+    
+    private Ball ball;
 
     [Header("UI Elements")]
     public Image fillImage;
@@ -23,47 +25,39 @@ public class Power : MonoBehaviour
     {
         slider = GameObject.Find("PowerBar").GetComponent<Slider>();
         slider.value = Mathf.Clamp(slider.value, 0.0f, 10.0f);
+        ball = FindObjectOfType<Ball>();
+
+        
     }
 
     private void Update()
-    {
-        PowerBar();
+    {   
         powerValue = slider.value;
+        powerText.text = "Power: " + powerValue.ToString("F0");
 
+        StartCoroutine(PowerBarUp());
+        StartCoroutine(PowerBarDown());
     }
 
-
-    public void PowerBar()
+    public IEnumerator PowerBarUp()
     {
-        StartCoroutine(PowerBarUp());   
-
-        powerText.text = "Power: " + slider.value.ToString("F0");
-        
-        if (isCoroutineActive == false)
+        while (isPowerUp)
         {
-            throwPower = powerValue;
+            slider.value += fillSpeed * Time.deltaTime;
+            yield return new WaitForSeconds(2.0f);
+            isPowerUp = false;
+        }
+
+    }
+    public IEnumerator PowerBarDown()
+    {
+        while (isPowerUp == false)
+        {
+            slider.value -= fillSpeed * Time.deltaTime;
+            yield return new WaitForSeconds(2.0f);
+            isPowerUp = true;
         }
     }
-    
-    IEnumerator PowerBarUp()
-    {
-        if (isCoroutineActive == true)
-        {
-            if (isPowerUp == true)
-            {
-                slider.value += fillSpeed * Time.deltaTime;
-                yield return new WaitForSeconds(2.0f);
-                isPowerUp = false;
-            }
 
-            if (isPowerUp == false)
-            {
-                slider.value -= fillSpeed * Time.deltaTime;
-                yield return new WaitForSeconds(2.0f);
-                isPowerUp = true;
-            }
-        }
- 
-    }
-
+  
 }  
