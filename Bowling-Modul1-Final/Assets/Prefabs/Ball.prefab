@@ -114,6 +114,8 @@ MonoBehaviour:
   _powerMultiplier: 110
   _movementSpeed: 10
   _isThrown: 0
+  _isMoving: 0
+  _throws: 0
 --- !u!54 &1161214704678494785
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -30,8 +30,8 @@ public class TurnSystem : MonoBehaviour
     private void Update()
     {
         StartCoroutine(Turn1());
-        StartCoroutine(Turn2());
-
+        
+        gameManager = FindObjectOfType<GameManager>();
         
     }
 
@@ -47,7 +47,9 @@ public class TurnSystem : MonoBehaviour
 
         if (ball._throws == 2)
         {
-            isCoroutineActive = false;
+            
+            isCoroutineActive = false;  
+            StartCoroutine(Turn2());
         }
 
         yield return null;
@@ -55,18 +57,33 @@ public class TurnSystem : MonoBehaviour
 
     public IEnumerator Turn2()
     {
-        if (ball._throws >= 2)
-        {
-            turnIndex = Turns.Turn2;
-            turnScore[1] = scoreScript._currentScore;
-            
-        }
+    
+         if (ball._throws >= 2 && ball._throws <= 4)
+         {
+             turnIndex = Turns.Turn2;
+             turnScore[1] = scoreScript._currentScore;
+         }
+
+         if (ball._throws == 4)
+         {    
+            StartCoroutine(Turn3());
+            StopCoroutine(Turn2());
+         }
 
         yield return null;
     }
 
-    public void Turn3()
+    public IEnumerator Turn3()
     {
-        turnScore[2] = scoreScript._currentScore;
+
+         if (ball._throws >= 4 && ball._throws <= 6)
+         {
+             turnIndex = Turns.Turn3;
+             turnScore[2] = scoreScript._currentScore;
+         }
+         
+            
+        yield return null;
+        
     }
 }
