@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using JetBrains.Annotations;
 
 public class Ball : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
     private Pin pinScript;
     private GameManager gameManager;
     private Power powerScript;
+    private AudioSource audioSource;
 
 
     [Header("GameObjects")]
@@ -24,7 +25,7 @@ public class Ball : MonoBehaviour
     public bool _isThrown = false;
     public bool _isMoving = false;
     public int _throws;
-    public int turns;
+    
     
     private void Start()
     {
@@ -33,7 +34,9 @@ public class Ball : MonoBehaviour
         powerScript = FindObjectOfType<Power>();
         pinScript = FindObjectOfType<Pin>();
         gameManager = FindObjectOfType<GameManager>();
-        turns  = 0;
+        audioSource = GetComponent<AudioSource>();
+        
+
     }
 
     private void Update()
@@ -54,6 +57,7 @@ public class Ball : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.forward * powerScript.powerValue * _powerMultiplier);
+            audioSource.Play();
             _isThrown = true; 
             _isMoving = true;
             _throws = _throws + 1;
@@ -63,21 +67,19 @@ public class Ball : MonoBehaviour
 
     public IEnumerator BallReset()
     {
-        if (transform.position.z >= -4.0f)
+        if (transform.position.z >= 0.0f)
         {
             yield return new WaitForSeconds(2.0f);
             _isThrown = false;
             _isMoving = false;      
-            transform.position = startingPosition;            
-            NextTurn();
+            transform.position = startingPosition;
+            gameManager.NextTurn();
+           
         }
 
         yield return null;
     }
 
-    public void NextTurn()
-    {
-        turns = _throws;
-    }
+    
 
 }

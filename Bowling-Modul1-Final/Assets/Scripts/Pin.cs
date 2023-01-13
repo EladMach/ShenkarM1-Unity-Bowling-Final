@@ -8,6 +8,10 @@ public class Pin : MonoBehaviour
     private Ball ball;
     private GameManager gameManager;
     private Vector3 startingPosition;
+    private AudioSource audioSource;
+
+    
+    
     
     
  
@@ -17,8 +21,10 @@ public class Pin : MonoBehaviour
         startingPosition = transform.position;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         ball = FindObjectOfType<Ball>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        
 
-   }
+    }
 
     void Update()
     {
@@ -38,5 +44,13 @@ public class Pin : MonoBehaviour
   
     }
 
-    
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Ball")
+        {
+            audioSource.Play();    
+        }
+    }
+
+
 }

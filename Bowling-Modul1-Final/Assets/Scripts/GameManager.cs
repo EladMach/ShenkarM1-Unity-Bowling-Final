@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Variables")]
-    
+    public int turns;
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
+    
 
     [Header("UI Elements")]
     public Slider timeBar;
     public TextMeshProUGUI timeText;
+
+    
 
     private Ball ball;
 
 
     private void Start()
     {
-        ball = FindObjectOfType<Ball>();    
+        DontDestroyOnLoad(this);
+        ball = FindObjectOfType<Ball>(); 
+        turns = 0;
   
     }
 
@@ -57,5 +63,12 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(timeBar.value);
     }
+
+    public void NextTurn()
+    {  
+        turns = ball._throws;
+    }
+
+    
 
 }
