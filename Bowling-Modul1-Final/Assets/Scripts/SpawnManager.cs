@@ -8,13 +8,13 @@ public class SpawnManager : MonoBehaviour
     private Vector3 startingPosition;
     public GameObject pinsPrefab;
 
-    
+    private bool isSpawning = true;
 
     private void Start()
     {
         startingPosition = transform.position;
         gameManager = FindObjectOfType<GameManager>();
-        SpawnPins();
+        SpawnStartPins();
     }
 
     private void Update()
@@ -22,10 +22,23 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    public void SpawnPins()
-    {  
-        Instantiate(pinsPrefab, startingPosition, Quaternion.identity);           
+    public void SpawnStartPins()
+    {
+        Instantiate(pinsPrefab, startingPosition, Quaternion.identity);    
     }
+
+    public void SpawnNextPins()
+    {
+        if (isSpawning)
+        {
+            Instantiate(pinsPrefab, startingPosition, Quaternion.identity);
+            isSpawning = false;
+        }
+
+        isSpawning = true;
+        
+    }
+
 
    
 

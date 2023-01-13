@@ -35,15 +35,15 @@ public class Ball : MonoBehaviour
         pinScript = FindObjectOfType<Pin>();
         gameManager = FindObjectOfType<GameManager>();
         spawnManager = FindObjectOfType<SpawnManager>();
-        audioSource = GetComponent<AudioSource>();   
-
+        audioSource = GetComponent<AudioSource>();
+        
     }
 
     private void Update()
     {
         Throw();
         StartCoroutine(BallReset());
-        
+
     }
   
     public void Throw()

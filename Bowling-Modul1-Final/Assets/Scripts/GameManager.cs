@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         ball = FindObjectOfType<Ball>();
         scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
         spawnManager = FindObjectOfType<SpawnManager>();
+        turns = Mathf.Clamp(turns, 0, 10);
+        
     }
 
     private void Update()
@@ -50,19 +52,17 @@ public class GameManager : MonoBehaviour
         {
             isTimerOn = false;
         }
+        else
+        {
+            isTimerOn = true;
+        }
 
         if (timeBar.value == 0)
         {
-            isTimerOn = false;
-            
+            timeBar.value = 10;
         }
-
-        if (ball._isThrown == false)
-        {
-            isTimerOn = true;     
-        }
-
-        yield return new WaitForSeconds(timeBar.value);
+        
+        yield return null;
     }
 
     public void NextTurn()
@@ -71,8 +71,10 @@ public class GameManager : MonoBehaviour
         {
             turns = turns + 1;
         }
-        turns = ball._throws;
 
+        turns = ball._throws - 1;
+
+        
     }
 
     
