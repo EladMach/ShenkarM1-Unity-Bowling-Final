@@ -57,7 +57,7 @@ public class Ball : MonoBehaviour
 
     }
 
-    IEnumerator BallReset()
+    public IEnumerator BallReset()
     {
         if (transform.position.z >= 5.0f)
         {

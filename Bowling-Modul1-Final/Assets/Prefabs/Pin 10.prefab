@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 2129918941744938214}
   - component: {fileID: 928492076708235206}
   m_Layer: 0
-  m_Name: Trigger10
+  m_Name: TriggerScore
   m_TagString: Pin10
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
