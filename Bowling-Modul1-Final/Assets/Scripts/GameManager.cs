@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int turns = 1;
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
-    public bool isEndTurn = false;
+    
     
 
     [Header("UI Elements")]
@@ -70,13 +70,12 @@ public class GameManager : MonoBehaviour
         if (scoreScript._currentScore == 10)
         {
             turns = turns + 1;
-            
         }
-        if (isEndTurn== true)
-        {
-            
-        }
-        turns = ball._throws + 1;
+
+        turns = ball._throws;
+
+        spawnManager.SpawnPins();
+   
     }
 
     

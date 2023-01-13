@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour
     private GameManager gameManager;
     private Power powerScript;
     private AudioSource audioSource;
-
+    private SpawnManager spawnManager;
 
     [Header("GameObjects")]
   
@@ -34,6 +34,7 @@ public class Ball : MonoBehaviour
         powerScript = FindObjectOfType<Power>();
         pinScript = FindObjectOfType<Pin>();
         gameManager = FindObjectOfType<GameManager>();
+        spawnManager = FindObjectOfType<SpawnManager>();
         audioSource = GetComponent<AudioSource>();   
 
     }
@@ -59,7 +60,7 @@ public class Ball : MonoBehaviour
             audioSource.Play();
             _isThrown = true; 
             _isMoving = true;
-            _throws = _throws + 1;
+            _throws = _throws + 1;    
         }
 
     }
@@ -71,9 +72,7 @@ public class Ball : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             _isThrown = false;
             _isMoving = false;      
-            transform.position = startingPosition;
-            gameManager.NextTurn();
-           
+            transform.position = startingPosition;             
         }
 
         yield return null;
