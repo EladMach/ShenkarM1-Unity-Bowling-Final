@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             isTimerOn = true;     
         }
 
-        yield return null;
+        yield return new WaitForSeconds(timeBar.value);
     }
 
 
