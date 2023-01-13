@@ -60,7 +60,8 @@ public class Ball : MonoBehaviour
             audioSource.Play();
             _isThrown = true; 
             _isMoving = true;
-            _throws = _throws + 1;    
+            _throws = _throws + 1;
+            
         }
 
     }
@@ -72,7 +73,8 @@ public class Ball : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             _isThrown = false;
             _isMoving = false;      
-            transform.position = startingPosition;             
+            transform.position = startingPosition;
+            gameManager.NextTurn();
         }
 
         yield return null;

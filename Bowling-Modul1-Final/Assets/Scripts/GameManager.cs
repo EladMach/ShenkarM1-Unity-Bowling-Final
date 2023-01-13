@@ -71,11 +71,8 @@ public class GameManager : MonoBehaviour
         {
             turns = turns + 1;
         }
-
         turns = ball._throws;
 
-        spawnManager.SpawnPins();
-   
     }
 
     

@@ -66,7 +66,7 @@ public class Score : MonoBehaviour
 
         PlayerPrefs.SetInt("StartScore", startScore);
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,38 +74,41 @@ public class Score : MonoBehaviour
         if (other.CompareTag("ScoreTrigger"))
         {
             Debug.Log("Pin Fell");
-            _currentScore++; 
+            StartCoroutine(UpdateScore()); 
         }     
         
     }
 
-
+    public IEnumerator UpdateScore()
+    {  
+        _currentScore++;
+        yield break;
+    }
+    
     public void Turn1()
     {
         if (gameManager.turns == 2)
         {
             turn1scoreText.text = "Turn1 Score: " + _currentScore.ToString();
-            turnsScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);            
+            turnsScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore); 
             
         }
-         
+        
     }
 
     public void Turn2()
     {
         if (gameManager.turns == 4)
-        {     
+        {
             turn2scoreText.text = "Turn2 Score: " + _currentScore.ToString();
-            turnsScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            
+            turnsScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
         }        
     }
 
     public void Turn3()
     {
         if (gameManager.turns == 6)
-        {
-            
+        { 
             turn3scoreText.text = "Turn3 Score: " + _currentScore.ToString();
             turnsScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
 

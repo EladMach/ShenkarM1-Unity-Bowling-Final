@@ -8,24 +8,26 @@ public class SpawnManager : MonoBehaviour
     private Vector3 startingPosition;
     public GameObject pinsPrefab;
 
-    public bool isSpawned;
+    
 
     private void Start()
     {
         startingPosition = transform.position;
         gameManager = FindObjectOfType<GameManager>();
+        SpawnPins();
+    }
+
+    private void Update()
+    {
         
     }
 
-    public IEnumerator SpawnPins()
-    {
-        if (isSpawned)
-        {
-            Instantiate(pinsPrefab, startingPosition, Quaternion.identity);
-            isSpawned = false;
-        }
-        yield break;
+    public void SpawnPins()
+    {  
+        Instantiate(pinsPrefab, startingPosition, Quaternion.identity);           
     }
+
+   
 
     
 
