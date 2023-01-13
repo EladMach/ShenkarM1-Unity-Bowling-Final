@@ -15,10 +15,11 @@ public class Score : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshProUGUI scoreText;
 
+    private GameManager gameManager;
 
     private void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
         scoreText.text = "Score " + _score;
     }
 
@@ -26,6 +27,7 @@ public class Score : MonoBehaviour
     {
         _currentScore = _score;
         scoreText.text = "Score: " + _currentScore.ToString();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,10 +36,11 @@ public class Score : MonoBehaviour
         {
             Debug.Log("Pin Fell");
             _score++;
-
         }
      
     }
+
+    
 
    
 
