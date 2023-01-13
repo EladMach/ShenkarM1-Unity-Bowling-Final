@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
         ball = FindObjectOfType<Ball>(); 
         turns = 0;
   

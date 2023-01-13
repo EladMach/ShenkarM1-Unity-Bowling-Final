@@ -11,6 +11,7 @@ public class Score : MonoBehaviour
     public int _currentScore;
     public int _score;
     
+    
 
     [Header("UI Elements")]
     public TextMeshProUGUI scoreText;
@@ -21,12 +22,15 @@ public class Score : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         scoreText.text = "Score " + _score;
+        PlayerPrefs.SetInt("Start Score", _score);
     }
 
     private void Update()
     {
-        _currentScore = _score;
+
         scoreText.text = "Score: " + _currentScore.ToString();
+        ResetScore();
+        
         
     }
 
@@ -35,9 +39,19 @@ public class Score : MonoBehaviour
         if (other.CompareTag("ScoreTrigger"))
         {
             Debug.Log("Pin Fell");
-            _score++;
+            _currentScore++;
         }
      
+    }
+
+
+    public void ResetScore()
+    {
+        if (gameManager.turns == 2 || gameManager.turns == 5 || gameManager.turns == 8) 
+        {
+            _currentScore = PlayerPrefs.GetInt("Start Score", _score);
+        }
+
     }
 
     
