@@ -8,8 +8,18 @@ using UnityEngine.SceneManagement;
 public class Score : MonoBehaviour
 {
     [Header("Variables")]
+    public int _startScore;
     public int _currentScore;
-    public int _score;
+    public int turn1Score;
+    public int turn2Score;
+    public int turn3Score;
+    public int turn4Score;
+    public int turn5Score;
+    public int turn6Score;
+    public int turn7Score;
+    public int turn8Score;
+    public int turn9Score;
+    public int turn10Score;
     
     
 
@@ -21,15 +31,15 @@ public class Score : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        scoreText.text = "Score " + _score;
-        PlayerPrefs.SetInt("Start Score", _score);
+        scoreText.text = "Score " + _startScore;
+        
     }
 
     private void Update()
     {
 
         scoreText.text = "Score: " + _currentScore.ToString();
-        ResetScore();
+        
         
         
     }
@@ -43,19 +53,5 @@ public class Score : MonoBehaviour
         }
      
     }
-
-
-    public void ResetScore()
-    {
-        if (gameManager.turns == 2 || gameManager.turns == 5 || gameManager.turns == 8) 
-        {
-            _currentScore = PlayerPrefs.GetInt("Start Score", _score);
-        }
-
-    }
-
-    
-
-   
 
 }

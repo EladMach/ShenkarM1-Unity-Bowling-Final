@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         if (timeBar.value == 0)
         {
             isTimerOn = false;
-            Debug.Log("Times Up!");
+            
         }
 
         if (ball._isThrown == false)
