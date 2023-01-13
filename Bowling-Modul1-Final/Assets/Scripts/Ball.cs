@@ -34,8 +34,7 @@ public class Ball : MonoBehaviour
         powerScript = FindObjectOfType<Power>();
         pinScript = FindObjectOfType<Pin>();
         gameManager = FindObjectOfType<GameManager>();
-        audioSource = GetComponent<AudioSource>();
-        
+        audioSource = GetComponent<AudioSource>();   
 
     }
 
@@ -67,7 +66,7 @@ public class Ball : MonoBehaviour
 
     public IEnumerator BallReset()
     {
-        if (transform.position.z >= 0.0f)
+        if (transform.position.z >= -4.0f)
         {
             yield return new WaitForSeconds(2.0f);
             _isThrown = false;

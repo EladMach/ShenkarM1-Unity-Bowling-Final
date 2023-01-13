@@ -8,31 +8,33 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [Header("Variables")]
-    public int turns;
+    public int turns = 1;
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
+    public bool isEndTurn = false;
     
 
     [Header("UI Elements")]
     public Slider timeBar;
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI turnsText;
 
-    
-
+    private Score scoreScript;
     private Ball ball;
+    private SpawnManager spawnManager;
 
 
     private void Start()
     {
-        ball = FindObjectOfType<Ball>(); 
-        turns = 0;
-  
+        ball = FindObjectOfType<Ball>();
+        scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
+        spawnManager = FindObjectOfType<SpawnManager>();
     }
 
     private void Update()
     {          
         StartCoroutine(TimerDown());
-
+        turnsText.text = "Turn: " + turns;
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
         
         
@@ -64,8 +66,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextTurn()
-    {  
-        turns = ball._throws;
+    {
+        if (scoreScript._currentScore == 10)
+        {
+            turns = turns + 1;
+            
+        }
+        if (isEndTurn== true)
+        {
+            
+        }
+        turns = ball._throws + 1;
     }
 
     

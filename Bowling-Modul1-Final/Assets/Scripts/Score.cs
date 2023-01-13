@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Score : MonoBehaviour
 {
     [Header("Variables")]
-    public int _startScore;
+    private int startScore; 
     public int _currentScore;
     public int turn1Score;
     public int turn2Score;
@@ -24,23 +24,39 @@ public class Score : MonoBehaviour
     
 
     [Header("UI Elements")]
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI turn1scoreText;
+    public TextMeshProUGUI turn2scoreText;
+    public TextMeshProUGUI turn3scoreText;
+    public TextMeshProUGUI turn4scoreText;
+    public TextMeshProUGUI turn5scoreText;
+    public TextMeshProUGUI turn6scoreText;
+    public TextMeshProUGUI turn7scoreText;
+    public TextMeshProUGUI turn8scoreText;
+    public TextMeshProUGUI turn9scoreText;
+    public TextMeshProUGUI turn10scoreText;
+
+
+
 
     private GameManager gameManager;
 
     private void Start()
     {
+        
         gameManager = FindObjectOfType<GameManager>();
-        scoreText.text = "Score " + _startScore;
+        
         
     }
 
     private void Update()
     {
+        turn1scoreText.text = "Turn1 Score: " + _currentScore.ToString();
+        turn2scoreText.text = "Turn2 Score: " + _currentScore.ToString();
 
-        scoreText.text = "Score: " + _currentScore.ToString();
-        
-        
+        PlayerPrefs.SetInt("StartScore", startScore);
+        PlayerPrefs.SetInt("CurrentScore", _currentScore);
+        Turn1();
+        Turn2();
         
     }
 
@@ -49,9 +65,31 @@ public class Score : MonoBehaviour
         if (other.CompareTag("ScoreTrigger"))
         {
             Debug.Log("Pin Fell");
-            _currentScore++;
-        }
-     
+            _currentScore++; 
+        }     
+        
     }
+
+
+    public void Turn1()
+    {
+        if (gameManager.turns == 2)
+        {
+            turn1Score = PlayerPrefs.GetInt("CurrentScore", _currentScore); 
+            gameManager.isEndTurn = true;
+        }      
+    }
+
+    public void Turn2()
+    {
+        
+        if (gameManager.turns == 4)
+        {
+            turn2Score = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+        }
+        
+    }
+
+
 
 }

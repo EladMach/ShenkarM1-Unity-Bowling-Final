@@ -10,11 +10,7 @@ public class Pin : MonoBehaviour
     private Vector3 startingPosition;
     private AudioSource audioSource;
 
-    
-    
-    
-    
- 
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
