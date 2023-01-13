@@ -38,16 +38,5 @@ public class Pin : MonoBehaviour
   
     }
 
-   
-
-    //private IEnumerator WaitCoroutine()
-    //{
-    //    Debug.Log("Wait has started");
-    //    yield return new WaitForSeconds(3.0f);
-    //    yield break;
-    //}
-
     
-
-
 }

@@ -6,11 +6,16 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-   
+    [Header("Variables")]
     public int _currentScore;
     public int _score;
-    public GameObject[] pinPrefab;
+
+    [Header("UI Elements")]
     public TextMeshProUGUI scoreText;
+
+    [Header("GameObjects")]
+    public GameObject[] pinPrefab;
+    
 
     private void Start()
     {
@@ -29,61 +34,61 @@ public class Score : MonoBehaviour
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[0]);
+            Destroy(pinPrefab[0], 2.0f);
         }
         if (other.CompareTag("Pin2"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[1]);
+            Destroy((pinPrefab[1]), 2.0f);
         }
         if (other.CompareTag("Pin3"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[2]);
+            Destroy(pinPrefab[2], 2.0f);
         }
         if (other.CompareTag("Pin4"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[3]);
+            Destroy(pinPrefab[3], 2.0f);
         }
         if (other.CompareTag("Pin5"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[4]);
+            Destroy(pinPrefab[4], 2.0f);
         }
         if (other.CompareTag("Pin6"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[5]);
+            Destroy(pinPrefab[5], 2.0f);
         }
         if (other.CompareTag("Pin7"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[6]);
+            Destroy(pinPrefab[6], 2.0f);
         }
         if (other.CompareTag("Pin8"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[7]);
+            Destroy(pinPrefab[7], 2.0f);
         }
         if (other.CompareTag("Pin9"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[8]);
+            Destroy(pinPrefab[8], 2.0f);
         }
         if (other.CompareTag("Pin10"))
         {
             Debug.Log(other.tag);
             _score++;
-            Destroy(pinPrefab[9]);
+            Destroy(pinPrefab[9], 2.0f);
         }
 
     }

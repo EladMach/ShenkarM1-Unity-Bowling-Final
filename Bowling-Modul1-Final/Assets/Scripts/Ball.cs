@@ -11,17 +11,20 @@ public class Ball : MonoBehaviour
     private Rigidbody rb;
     private Vector3 startingPosition;
     private Pin pinScript;
+    private GameManager gameManager;
+    private Power powerScript;
+
 
     [Header("GameObjects")]
-    
-    private Power powerScript;
-    
+  
+
     [Header("Variables")]
     public float _powerMultiplier = 150f;
     public float _movementSpeed = 30.0f;
     public bool _isThrown = false;
     public bool _isMoving = false;
     public int _throws;
+    public int turns;
     
     private void Start()
     {
@@ -29,7 +32,8 @@ public class Ball : MonoBehaviour
         startingPosition = new Vector3(0, 0.35f, -7.5f);       
         powerScript = FindObjectOfType<Power>();
         pinScript = FindObjectOfType<Pin>();
-        
+        gameManager = FindObjectOfType<GameManager>();
+        turns  = 0;
     }
 
     private void Update()
@@ -52,24 +56,28 @@ public class Ball : MonoBehaviour
             rb.AddForce(Vector3.forward * powerScript.powerValue * _powerMultiplier);
             _isThrown = true; 
             _isMoving = true;
-            _throws = _throws + 1;           
+            _throws = _throws + 1;
         }
 
     }
 
     public IEnumerator BallReset()
     {
-        if (transform.position.z >= 5.0f)
+        if (transform.position.z >= -4.0f)
         {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(2.0f);
             _isThrown = false;
             _isMoving = false;      
-            transform.position = startingPosition;         
+            transform.position = startingPosition;            
+            NextTurn();
         }
- 
-        yield return null;
 
+        yield return null;
     }
 
+    public void NextTurn()
+    {
+        turns = _throws;
+    }
 
 }

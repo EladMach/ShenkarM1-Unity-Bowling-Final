@@ -8,20 +8,20 @@ public class GameManager : MonoBehaviour
 {
     [Header("Variables")]
     
+    private bool isTimerOn = true;
+    private float fillSpeed = 1.0f;
 
     [Header("UI Elements")]
     public Slider timeBar;
     public TextMeshProUGUI timeText;
 
-
-    private float fillSpeed = 1.0f;
-    private bool isTimerOn = true;
     private Ball ball;
-  
+
 
     private void Start()
     {
         ball = FindObjectOfType<Ball>();    
+  
     }
 
     private void Update()
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TimerDown());
 
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
+        
+        
     }
     public IEnumerator TimerDown()
     {
@@ -56,7 +58,4 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(timeBar.value);
     }
 
-
-    
-    
 }
