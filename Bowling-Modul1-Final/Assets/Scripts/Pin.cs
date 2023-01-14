@@ -17,9 +17,7 @@ public class Pin : MonoBehaviour
         startingPosition = transform.position;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         ball = FindObjectOfType<Ball>();
-        audioSource = gameObject.GetComponent<AudioSource>();
-        
-
+        audioSource = gameObject.GetComponent<AudioSource>();      
     }
 
     void Update()

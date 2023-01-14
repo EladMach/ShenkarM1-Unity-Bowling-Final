@@ -11,9 +11,7 @@ public class GameManager : MonoBehaviour
     public int turns = 1;
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
-    
-    
-
+   
     [Header("UI Elements")]
     public Slider timeBar;
     public TextMeshProUGUI timeText;
@@ -50,19 +48,10 @@ public class GameManager : MonoBehaviour
         {
             timeBar.value -= fillSpeed * Time.deltaTime;
         }
-
-        if (ball._isThrown == true)
-        {
-            isTimerOn = false;
-        }
-        else
-        {
-            isTimerOn = true;
-        }
-
+ 
         if (timeBar.value == 0)
         {
-            timeBar.value = 10;
+            timeBar.value = 20;
         }
         
         yield return null;
@@ -70,13 +59,12 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
-        turns = ball._throws;
-          
+        turns = ball._throws;       
     }
 
     private void RestartGame()
     {
-        if (turns == 2)
+        if (turns == 20)
         {
             SceneManager.LoadScene(0);
         }

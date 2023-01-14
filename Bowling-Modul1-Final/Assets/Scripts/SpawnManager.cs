@@ -17,11 +17,6 @@ public class SpawnManager : MonoBehaviour
         SpawnStartPins();
     }
 
-    private void Update()
-    {
-        
-    }
-
     public void SpawnStartPins()
     {
         Instantiate(pinsPrefab, startingPosition, Quaternion.identity);    
@@ -34,7 +29,6 @@ public class SpawnManager : MonoBehaviour
             Instantiate(pinsPrefab, startingPosition, Quaternion.identity);
             isSpawning = false;
         }
-
         
     }
 

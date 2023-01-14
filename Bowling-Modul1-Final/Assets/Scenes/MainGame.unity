@@ -343,9 +343,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1004,7 +1004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011789204188, guid: 05a515ae3e4e9944fb587de7d3f03009, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.43
+      value: -7.36189
       objectReference: {fileID: 0}
     - target: {fileID: 4000011789204188, guid: 05a515ae3e4e9944fb587de7d3f03009, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3106,6 +3106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentScore: 0
+  finalScore: 0
   turnsScore: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   turnScoreText:
   - {fileID: 1836219187}

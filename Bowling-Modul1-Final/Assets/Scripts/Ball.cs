@@ -18,15 +18,13 @@ public class Ball : MonoBehaviour
 
     [Header("GameObjects")]
   
-
     [Header("Variables")]
     public float _powerMultiplier = 150f;
     public float _movementSpeed = 30.0f;
     public bool _isThrown = false;
     public bool _isMoving = false;
     public int _throws;
-    
-    
+       
     private void Start()
     {
         rb = GetComponent<Rigidbody>();

@@ -16,22 +16,15 @@ public class Score : MonoBehaviour
 
     private bool isNextTurn = true;
 
-
     [Header("UI Elements")]
     public TextMeshProUGUI[] turnScoreText;
-
-    
+   
     private SpawnManager spawnManager;
     private GameManager gameManager;
 
-    private void Awake()
-    {
-        
-    }
-
+ 
     private void Start()
-    {
-        
+    {     
         turnScoreText[0].text = "Turn1 Score: " + startScore.ToString();
         turnScoreText[1].text = "Turn2 Score: " + startScore.ToString();
         turnScoreText[2].text = "Turn3 Score: " + startScore.ToString();
@@ -45,7 +38,7 @@ public class Score : MonoBehaviour
 
         spawnManager = FindObjectOfType<SpawnManager>();
         gameManager = FindObjectOfType<GameManager>();
-
+        
         PlayerPrefs.SetInt("StartScore", startScore);
     }
 
@@ -65,8 +58,7 @@ public class Score : MonoBehaviour
         }     
         
     }
-
-  
+ 
     public void TurnsSystem()
     {
         Turn1();
@@ -89,10 +81,8 @@ public class Score : MonoBehaviour
             turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnsScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;            
-            gameManager.turns = gameManager.turns + 1;
-            
+            gameManager.turns = gameManager.turns + 1; 
         }
-   
     }
 
     public void Turn2()
