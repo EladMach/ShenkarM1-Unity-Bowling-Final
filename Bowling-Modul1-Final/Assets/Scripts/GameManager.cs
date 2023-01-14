@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TimerDown());
         turnsText.text = "Turn: " + turns;
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
-        
+        RestartGame();
         
     }
     public IEnumerator TimerDown()
@@ -71,6 +71,12 @@ public class GameManager : MonoBehaviour
           
     }
 
-    
+    private void RestartGame()
+    {
+        if (turns == 20)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
 
 }
