@@ -24,6 +24,11 @@ public class Score : MonoBehaviour
     private SpawnManager spawnManager;
     private GameManager gameManager;
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
         
@@ -83,8 +88,9 @@ public class Score : MonoBehaviour
             ResetScore();
             turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnsScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            isNextTurn = true;            
             gameManager.turns = gameManager.turns + 1;
+            
         }
    
     }
@@ -93,7 +99,7 @@ public class Score : MonoBehaviour
     {
         if (gameManager.turns == 4)
         {
-            ResetScore();
+            ResetScore();         
             turnScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnsScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;

@@ -35,11 +35,10 @@ public class SpawnManager : MonoBehaviour
             isSpawning = false;
         }
 
-        isSpawning = true;
         
     }
 
-
+    
    
 
     

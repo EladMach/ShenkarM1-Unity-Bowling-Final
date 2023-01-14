@@ -23,7 +23,10 @@ public class GameManager : MonoBehaviour
     private Ball ball;
     private SpawnManager spawnManager;
 
-
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {
         ball = FindObjectOfType<Ball>();
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     private void RestartGame()
     {
-        if (turns == 20)
+        if (turns == 2)
         {
             SceneManager.LoadScene(0);
         }
