@@ -13,19 +13,12 @@ public class Score : MonoBehaviour
     public int _currentScore;
 
     public int[] turnsScore;
-    
+
+    private bool isNextTurn = true;
+
 
     [Header("UI Elements")]
-    public TextMeshProUGUI turn1scoreText;
-    public TextMeshProUGUI turn2scoreText;
-    public TextMeshProUGUI turn3scoreText;
-    public TextMeshProUGUI turn4scoreText;
-    public TextMeshProUGUI turn5scoreText;
-    public TextMeshProUGUI turn6scoreText;
-    public TextMeshProUGUI turn7scoreText;
-    public TextMeshProUGUI turn8scoreText;
-    public TextMeshProUGUI turn9scoreText;
-    public TextMeshProUGUI turn10scoreText;
+    public TextMeshProUGUI[] turnScoreText;
 
     
     private SpawnManager spawnManager;
@@ -33,16 +26,17 @@ public class Score : MonoBehaviour
 
     private void Start()
     {
-        turn1scoreText.text = "Turn1 Score: " + startScore.ToString();
-        turn2scoreText.text = "Turn2 Score: " + startScore.ToString();
-        turn3scoreText.text = "Turn3 Score: " + startScore.ToString();
-        turn4scoreText.text = "Turn4 Score: " + startScore.ToString();
-        turn5scoreText.text = "Turn5 Score: " + startScore.ToString();
-        turn6scoreText.text = "Turn6 Score: " + startScore.ToString();
-        turn7scoreText.text = "Turn7 Score: " + startScore.ToString();
-        turn8scoreText.text = "Turn8 Score: " + startScore.ToString();
-        turn9scoreText.text = "Turn9 Score: " + startScore.ToString();
-        turn10scoreText.text = "Turn10 Score: " + startScore.ToString();
+
+        turnScoreText[0].text = "Turn1 Score: " + startScore.ToString();
+        turnScoreText[1].text = "Turn2 Score: " + startScore.ToString();
+        turnScoreText[2].text = "Turn3 Score: " + startScore.ToString();
+        turnScoreText[3].text = "Turn4 Score: " + startScore.ToString();
+        turnScoreText[4].text = "Turn5 Score: " + startScore.ToString();
+        turnScoreText[5].text = "Turn6 Score: " + startScore.ToString();
+        turnScoreText[6].text = "Turn7 Score: " + startScore.ToString();
+        turnScoreText[7].text = "Turn8 Score: " + startScore.ToString();
+        turnScoreText[8].text = "Turn9 Score: " + startScore.ToString();
+        turnScoreText[9].text = "Turn10 Score: " + startScore.ToString();
 
         spawnManager = FindObjectOfType<SpawnManager>();
         gameManager = FindObjectOfType<GameManager>();
@@ -53,7 +47,6 @@ public class Score : MonoBehaviour
     private void Update()
     {
         TurnsSystem();
-     
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,29 +60,43 @@ public class Score : MonoBehaviour
         
     }
 
+  
     public void TurnsSystem()
     {
         Turn1();
         Turn2();
         Turn3();
+        Turn4();
+        Turn5();
+        Turn6();
+        Turn7();
+        Turn8();
+        Turn9();
+        Turn10();
     }
 
     public void Turn1()
     {
         if (gameManager.turns == 2)
         {
-            turn1scoreText.text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnsScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);             
+            ResetScore();
+            turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
         }
-        
+   
     }
 
     public void Turn2()
     {
         if (gameManager.turns == 4)
         {
-            turn2scoreText.text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnsScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
+            ResetScore();
+            turnScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
         }        
     }
 
@@ -97,11 +104,105 @@ public class Score : MonoBehaviour
     {
         if (gameManager.turns == 6)
         { 
-            turn3scoreText.text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            ResetScore();
+            turnScoreText[2].text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnsScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
         }
     }
 
+    public void Turn4()
+    {
+        if (gameManager.turns == 8)
+        {
+            ResetScore();
+            turnScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
+        }
+    }
+
+    public void Turn5()
+    {
+        if (gameManager.turns == 10)
+        {
+            ResetScore();
+            turnScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
+        }
+    }
+
+    public void Turn6()
+    {
+        if (gameManager.turns == 12)
+        {
+            ResetScore();
+            turnScoreText[5].text = "Turn6 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
+        }
+    }
+
+    public void Turn7()
+    {
+        if (gameManager.turns == 14)
+        {
+            ResetScore();
+            turnScoreText[6].text = "Turn7 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
+        }
+    }
+
+    public void Turn8()
+    {
+        if (gameManager.turns == 16)
+        {
+            ResetScore();
+            turnScoreText[7].text = "Turn8 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
+        }
+    }
+
+    public void Turn9()
+    {
+        if (gameManager.turns == 18)
+        {
+            ResetScore();
+            turnScoreText[8].text = "Turn9 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
+        }
+    }
+
+    public void Turn10()
+    {
+        if (gameManager.turns == 20)
+        {
+            ResetScore();
+            turnScoreText[9].text = "Turn10 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            turnsScore[9] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            isNextTurn = true;
+            gameManager.turns = gameManager.turns + 1;
+        }
+    }
+
+    public void ResetScore()
+    {
+        if (isNextTurn)
+        {
+            _currentScore = startScore;
+            isNextTurn = false;
+        }
+    }
    
 }

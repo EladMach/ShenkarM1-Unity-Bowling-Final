@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1caa910e63902943af0343a0ad1f83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turns: 0
+  turns: 1
   timeBar: {fileID: 119048164}
   timeText: {fileID: 1286068193}
   turnsText: {fileID: 928092683}
@@ -3107,16 +3107,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentScore: 0
   turnsScore: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  turn1scoreText: {fileID: 1836219187}
-  turn2scoreText: {fileID: 1376787780}
-  turn3scoreText: {fileID: 1486995305}
-  turn4scoreText: {fileID: 1705901097}
-  turn5scoreText: {fileID: 540753890}
-  turn6scoreText: {fileID: 1584044597}
-  turn7scoreText: {fileID: 813803021}
-  turn8scoreText: {fileID: 1215407174}
-  turn9scoreText: {fileID: 1097333025}
-  turn10scoreText: {fileID: 113055497}
+  turnScoreText:
+  - {fileID: 1836219187}
+  - {fileID: 1376787780}
+  - {fileID: 1486995305}
+  - {fileID: 1705901097}
+  - {fileID: 540753890}
+  - {fileID: 1584044597}
+  - {fileID: 813803021}
+  - {fileID: 1215407174}
+  - {fileID: 1097333025}
+  - {fileID: 113055497}
 --- !u!1 &1836219186
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         ball = FindObjectOfType<Ball>();
         scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
         spawnManager = FindObjectOfType<SpawnManager>();
-        turns = Mathf.Clamp(turns, 0, 10);
+        turns = Mathf.Clamp(turns, 0, 20);
         
     }
 
@@ -67,14 +67,8 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
-        if (scoreScript._currentScore == 10)
-        {
-            turns = turns + 1;
-        }
-
-        turns = ball._throws - 1;
-
-        
+        turns = ball._throws;
+          
     }
 
     
