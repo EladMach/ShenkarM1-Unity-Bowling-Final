@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
     [Header("Variables")]
     private int startScore; 
     public int _currentScore;
-    public int finalScore;
+    public int totalScore;
     public int[] turnsScore;
 
     private bool isNextTurn = true;
@@ -204,8 +204,8 @@ public class Score : MonoBehaviour
     
     public void CalculateFinalScore()
     {
-        finalScore = turnsScore[0] +turnsScore[1] + turnsScore[2] + turnsScore[3] + turnsScore[4] + turnsScore[5] + turnsScore[6] + turnsScore[7] + turnsScore[8] + turnsScore[9];
+        totalScore = turnsScore[0] +turnsScore[1] + turnsScore[2] + turnsScore[3] + turnsScore[4] + turnsScore[5] + turnsScore[6] + turnsScore[7] + turnsScore[8] + turnsScore[9];
 
-        PlayerPrefs.SetInt("FinalScore", finalScore);
+        PlayerPrefs.SetInt("FinalScore", totalScore);
     }
  }

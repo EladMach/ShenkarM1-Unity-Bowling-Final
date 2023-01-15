@@ -30,6 +30,8 @@ public class Pin : MonoBehaviour
         if (ball._isThrown == false)
         {
             rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
+
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
         if (ball._isThrown == true)
         {

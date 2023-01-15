@@ -22,13 +22,10 @@ public class Power : MonoBehaviour
 
 
     private void Start()
-    {
-        
+    {   
         powerBarSlider = GameObject.Find("PowerBar").GetComponent<Slider>();
         powerBarSlider.value = Mathf.Clamp(powerBarSlider.value, 0.0f, 10.0f);
         ball = FindObjectOfType<Ball>();
-
-        
     }
 
     private void Update()
@@ -39,7 +36,6 @@ public class Power : MonoBehaviour
         StartCoroutine(PowerBarUp());
         StartCoroutine(PowerBarDown());
 
-        
     }
 
     public IEnumerator PowerBarUp()

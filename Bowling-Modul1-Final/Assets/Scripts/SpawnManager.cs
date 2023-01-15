@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -16,6 +17,11 @@ public class SpawnManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         SpawnStartPins();
     }
+    private void Update()
+    {
+        SpawnNextPins();
+        DestroyPins();
+    }
 
     public void SpawnStartPins()
     {
@@ -24,12 +30,21 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnNextPins()
     {
-        if (isSpawning)
+
+        if (isSpawning == true && gameManager.turns == 3)
         {
             Instantiate(pinsPrefab, startingPosition, Quaternion.identity);
             isSpawning = false;
         }
         
+    }
+
+    public void DestroyPins()
+    {
+        if (isSpawning == false && gameManager.turns == 2)
+        {
+            Destroy(pinsPrefab.gameObject);
+        }
     }
 
     
