@@ -34,7 +34,7 @@ public class Ball : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         spawnManager = FindObjectOfType<SpawnManager>();
         audioSource = GetComponent<AudioSource>();
-        
+        startingPosition = new Vector3(0, 0.35f, -10f);
     }
 
     private void Update()

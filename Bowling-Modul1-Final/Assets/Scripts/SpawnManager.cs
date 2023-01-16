@@ -9,47 +9,29 @@ public class SpawnManager : MonoBehaviour
     private Vector3 startingPosition;
     public GameObject pinsPrefab;
 
-    private bool isSpawning = true;
+    public bool isSpawning = true;
 
     private void Start()
     {
         startingPosition = transform.position;
-        gameManager = FindObjectOfType<GameManager>();
-        SpawnStartPins();
+        gameManager = FindObjectOfType<GameManager>();  
     }
     private void Update()
     {
-        SpawnNextPins();
-        DestroyPins();
+        
     }
 
-    public void SpawnStartPins()
-    {
-        Instantiate(pinsPrefab, startingPosition, Quaternion.identity);    
-    }
 
     public void SpawnNextPins()
     {
 
-        if (isSpawning == true && gameManager.turns == 3)
+        if (isSpawning == true)
         {
             Instantiate(pinsPrefab, startingPosition, Quaternion.identity);
             isSpawning = false;
         }
-        
+
     }
 
-    public void DestroyPins()
-    {
-        if (isSpawning == false && gameManager.turns == 2)
-        {
-            Destroy(pinsPrefab.gameObject);
-        }
-    }
-
-    
-   
-
-    
 
 }

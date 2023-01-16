@@ -9,6 +9,7 @@ public class Pin : MonoBehaviour
     private GameManager gameManager;
     private Vector3 startingPosition;
     private AudioSource audioSource;
+    private SpawnManager spawnManager;
 
 
     void Start()
@@ -16,13 +17,14 @@ public class Pin : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         startingPosition = transform.position;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        ball = FindObjectOfType<Ball>();
+        ball = FindObjectOfType<Ball>();  
         audioSource = gameObject.GetComponent<AudioSource>();      
     }
 
     void Update()
     {
         FreezePinPosition();
+        DestroyPins();
     }
 
     public void FreezePinPosition()
@@ -48,5 +50,9 @@ public class Pin : MonoBehaviour
         }
     }
 
+    private void DestroyPins()
+    {
+        Destroy(this.gameObject);   
+    }
 
 }

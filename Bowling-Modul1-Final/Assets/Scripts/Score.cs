@@ -81,8 +81,10 @@ public class Score : MonoBehaviour
             turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;            
-            gameManager.turns = gameManager.turns + 1; 
+            gameManager.turns = gameManager.turns + 1;
+           
         }
+        
     }
 
     public void Turn2()
@@ -94,6 +96,7 @@ public class Score : MonoBehaviour
             turnScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
             gameManager.turns = gameManager.turns + 1;
+            
         }        
     }
 
