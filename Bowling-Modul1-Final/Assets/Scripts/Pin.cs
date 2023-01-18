@@ -24,7 +24,7 @@ public class Pin : MonoBehaviour
     void Update()
     {
         FreezePinPosition();
-        DestroyPins();
+       
     }
 
     public void FreezePinPosition()

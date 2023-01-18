@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TimerDown());
         turnsText.text = "Turn: " + turns;
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
-        RestartGame();
+        
         
     }
     public IEnumerator TimerDown()
@@ -49,12 +49,8 @@ public class GameManager : MonoBehaviour
             timeBar.value -= fillSpeed * Time.deltaTime;
         }
  
-        if (timeBar.value == 0)
-        {
-            timeBar.value = 20;
-        }
         
-        yield return null;
+        yield return new WaitForSeconds(1.0f);
     }
 
     public void NextTurn()
@@ -62,12 +58,12 @@ public class GameManager : MonoBehaviour
         turns = ball._throws;       
     }
 
-    private void RestartGame()
-    {
-        if (turns == 20)
-        {
-            SceneManager.LoadScene(0);
-        }
-    }
+    //private void RestartGame()
+    //{
+    //    if (turns == 20)
+    //    {
+    //        SceneManager.LoadScene(0);
+    //    }
+    //}
 
 }
