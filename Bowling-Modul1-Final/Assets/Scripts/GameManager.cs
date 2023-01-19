@@ -48,7 +48,10 @@ public class GameManager : MonoBehaviour
         {
             timeBar.value -= fillSpeed * Time.deltaTime;
         }
- 
+        if (ball._isThrown == true)
+        {
+            isTimerOn = false;
+        }
         
         yield return new WaitForSeconds(1.0f);
     }

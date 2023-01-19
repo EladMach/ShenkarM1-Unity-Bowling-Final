@@ -51,7 +51,7 @@ public class Ball : MonoBehaviour
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * _movementSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || gameManager.timeBar.value <= 0)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.forward * powerScript.powerValue * _powerMultiplier);
             audioSource.Play();
