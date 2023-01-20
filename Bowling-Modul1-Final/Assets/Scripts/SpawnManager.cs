@@ -7,7 +7,8 @@ public class SpawnManager : MonoBehaviour
 {
     private GameManager gameManager;
     private Vector3 startingPosition;
-    public GameObject pinsPrefab;
+    public GameObject[] pinsPrefab;
+
 
     public bool isSpawning = true;
 
@@ -18,20 +19,18 @@ public class SpawnManager : MonoBehaviour
     }
     private void Update()
     {
-        
+        SpawnPins();
     }
 
 
-    public void SpawnNextPins()
+    public void SpawnPins()
     {
-
         if (isSpawning == true)
         {
-            Instantiate(pinsPrefab, startingPosition, Quaternion.identity);
+            Instantiate(pinsPrefab[0], startingPosition, Quaternion.identity);
             isSpawning = false;
         }
-
     }
 
-
+    
 }

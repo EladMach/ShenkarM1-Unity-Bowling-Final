@@ -1522,63 +1522,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a515ae3e4e9944fb587de7d3f03009, type: 3}
---- !u!1001 &694081728
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725426, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
-      propertyPath: m_Name
-      value: Pins
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
 --- !u!1 &732822751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +1997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 166}
+  m_AnchoredPosition: {x: 0, y: 340}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &928092683
@@ -3159,7 +3102,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e19a50accb815342b8abf78691e5132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pinsPrefab: {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  pinsPrefab:
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
+  - {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
   isSpawning: 1
 --- !u!4 &1478511968
 Transform:

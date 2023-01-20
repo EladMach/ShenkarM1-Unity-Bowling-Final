@@ -46,6 +46,7 @@ public class Score : MonoBehaviour
     {
         TurnsSystem();
         CalculateFinalScore();
+        Strike();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,6 +72,14 @@ public class Score : MonoBehaviour
         Turn8();
         Turn9();
         Turn10();
+    }
+
+    public void Strike()
+    {
+        if (_currentScore == 10)
+        {
+            Debug.Log("Strike!");
+        }
     }
 
     public void Turn1()

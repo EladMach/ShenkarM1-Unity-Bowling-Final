@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
-        turns = ball._throws;       
+        turns = ball._throws;  
     }
 
     //private void RestartGame()
