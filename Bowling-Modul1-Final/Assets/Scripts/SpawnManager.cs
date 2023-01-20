@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     private GameManager gameManager;
     private Vector3 startingPosition;
     public GameObject[] pinsPrefab;
-
+    
 
     public bool isSpawning = true;
 
