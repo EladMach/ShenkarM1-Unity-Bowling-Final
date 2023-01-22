@@ -59,6 +59,8 @@ public class Score : MonoBehaviour
         }     
         
     }
+
+    
  
     public void TurnsSystem()
     {
