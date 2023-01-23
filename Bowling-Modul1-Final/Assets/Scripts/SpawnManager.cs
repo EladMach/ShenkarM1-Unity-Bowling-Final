@@ -6,17 +6,18 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     private GameManager gameManager;
-    private Vector3 startingPosition;
+    public Vector3 startingPosition;
     public GameObject[] pinsPrefab;
-    
-    
 
     public bool isSpawning = true;
+
+    
 
     private void Start()
     {
         startingPosition = transform.position;
-        gameManager = FindObjectOfType<GameManager>();  
+        gameManager = FindObjectOfType<GameManager>();
+        
     }
     private void Update()
     {

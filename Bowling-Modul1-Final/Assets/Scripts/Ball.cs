@@ -24,7 +24,9 @@ public class Ball : MonoBehaviour
     public bool _isThrown = false;
     public bool _isMoving = false;
     public int _throws;
-       
+
+    
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();

@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pin (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -113,6 +117,10 @@ PrefabInstance:
     - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_Name
       value: Pin (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
       objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
@@ -176,6 +184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pin (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -237,6 +249,10 @@ PrefabInstance:
     - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_Name
       value: Pin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
       objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
@@ -300,6 +316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -361,6 +381,10 @@ PrefabInstance:
     - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_Name
       value: Pin (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
       objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
@@ -424,6 +448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -484,6 +512,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_Name
+      value: Pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
       value: Pin
       objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
@@ -548,6 +580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pin (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -609,6 +645,10 @@ PrefabInstance:
     - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_Name
       value: Pin (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010261497426, guid: 568107d388de8704c9516a02015151aa, type: 3}
+      propertyPath: m_TagString
+      value: Pin
       objectReference: {fileID: 0}
     - target: {fileID: 4000010028134148, guid: 568107d388de8704c9516a02015151aa, type: 3}
       propertyPath: m_RootOrder

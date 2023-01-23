@@ -20,10 +20,11 @@ public class GameManager : MonoBehaviour
     private Score scoreScript;
     private Ball ball;
     private SpawnManager spawnManager;
+    public GameObject pins;
 
     private void Awake()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
     }
     private void Start()
     {
@@ -38,8 +39,7 @@ public class GameManager : MonoBehaviour
     {          
         StartCoroutine(TimerDown());
         turnsText.text = "Turn: " + turns;
-        timeText.text = "Timer: " + timeBar.value.ToString("F0");
-        
+        timeText.text = "Timer: " + timeBar.value.ToString("F0"); 
         
     }
     public IEnumerator TimerDown()

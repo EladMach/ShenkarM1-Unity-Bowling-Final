@@ -8,6 +8,8 @@ public class PinScoreTrigger : MonoBehaviour
     public GameObject pinPrefab;
     private GameManager gameManager;
 
+    
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -20,7 +22,7 @@ public class PinScoreTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "ScoreGround")
+        if (other.gameObject.CompareTag("ScoreGround"))
         {
             Destroy((pinPrefab), 1.5f);
         }

@@ -883,6 +883,7 @@ MonoBehaviour:
   timeBar: {fileID: 119048164}
   timeText: {fileID: 1286068193}
   turnsText: {fileID: 928092683}
+  pins: {fileID: 5125649722345725427, guid: 9500a13307ecfdb49a7d028d38129d60, type: 3}
 --- !u!4 &499576242
 Transform:
   m_ObjectHideFlags: 0

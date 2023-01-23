@@ -12,6 +12,8 @@ public class Pin : MonoBehaviour
     private SpawnManager spawnManager;
 
 
+    
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -50,9 +52,6 @@ public class Pin : MonoBehaviour
         }
     }
 
-    private void DestroyPins()
-    {
-        Destroy(this.gameObject);   
-    }
+   
 
 }

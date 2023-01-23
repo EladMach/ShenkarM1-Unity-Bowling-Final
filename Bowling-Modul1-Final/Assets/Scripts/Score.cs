@@ -21,8 +21,10 @@ public class Score : MonoBehaviour
    
     private SpawnManager spawnManager;
     private GameManager gameManager;
+    public GameObject pinsPrefab;
 
- 
+    
+
     private void Start()
     {     
         turnScoreText[0].text = "Turn1 Score: " + startScore.ToString();
@@ -56,8 +58,7 @@ public class Score : MonoBehaviour
             Debug.Log("Pin Fell");
             _currentScore++;
             PlayerPrefs.SetInt("CurrentScore", _currentScore);          
-        }     
-        
+        }        
     }
 
     
@@ -93,6 +94,7 @@ public class Score : MonoBehaviour
             turnScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;            
             gameManager.turns = gameManager.turns + 1;
+            SceneManager.LoadScene(0);
            
         }
         
