@@ -19,16 +19,11 @@ public class Pin : MonoBehaviour
         
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         ball = FindObjectOfType<Ball>();  
-        
-        
+    
         initialPosition = transform.position;
         initialRotation = transform.rotation;
     }
 
-    private void Update()
-    {
-        
-    }
 
     public void ResetPin()
     {
@@ -38,20 +33,15 @@ public class Pin : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("ScoreGround"))
-        {
-            SetPinsFalse();
-        }
-    }
+    
 
     private void SetPinsFalse()
     {   
         foreach (GameObject pin in gameManager.pins)
-        {
-            pin.SetActive(false);
-        }
+            if (pin.transform.rotation.x >= 20f)
+            {
+                Debug.Log("Set pins false  is Working");
+            }     
     }
 
 }

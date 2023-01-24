@@ -136,6 +136,7 @@ MonoBehaviour:
   _isThrown: 0
   _isMoving: 0
   _throws: 0
+  volume: 0.3
 --- !u!82 &9133269654945437233
 AudioSource:
   m_ObjectHideFlags: 0

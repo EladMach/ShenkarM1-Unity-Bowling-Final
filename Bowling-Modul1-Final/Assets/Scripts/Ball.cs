@@ -11,6 +11,7 @@ public class Ball : MonoBehaviour
     private Rigidbody rb;
     private Vector3 startingPosition;
     private Pin pinScript;
+    
     private GameManager gameManager;
     private Power powerScript;
     public AudioSource audioSource;
@@ -19,19 +20,19 @@ public class Ball : MonoBehaviour
 
 
     [Header("GameObjects")]
-        
+    
   
     [Header("Variables")]
     public float _powerMultiplier = 150f;
     public float _movementSpeed = 30.0f;
     public bool _isThrown = false;
     public bool _isMoving = false;
-    public int _throws;
+    public int _throws = 0;
     public float volume = 0.3f;
 
 
     private void Start()
-    {
+    { 
         rb = GetComponent<Rigidbody>();
         startingPosition = new Vector3(0, 0.35f, -7.5f);       
         powerScript = FindObjectOfType<Power>();
@@ -40,14 +41,12 @@ public class Ball : MonoBehaviour
         audioSource.clip = hitSound;
         audioSource.clip = throwSound;
         audioSource = GetComponent<AudioSource>();
-        startingPosition = new Vector3(0, 0.35f, -10f);
+        startingPosition = new Vector3(0, 0.35f, -10f);    
     }
 
     private void Update()
     {
         Throw();
-        StartCoroutine(BallReset());
-
     }
   
     public void Throw()
@@ -63,23 +62,22 @@ public class Ball : MonoBehaviour
             audioSource.PlayOneShot(throwSound, volume);
             _isThrown = true; 
             _isMoving = true;
-            _throws++;
+            _throws++;  
         }
 
     }
 
     public IEnumerator BallReset()
     {
+
         if (transform.position.z >= -4.0f)
         {
             yield return new WaitForSeconds(2.0f);
             _isThrown = false;
             _isMoving = false;
-            transform.position = startingPosition;
-            gameManager.NextTurn();
+            transform.position = startingPosition;    
         }
 
-        yield return null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -89,6 +87,5 @@ public class Ball : MonoBehaviour
             audioSource.PlayOneShot(hitSound, volume);
         }
     }
-
 
 }

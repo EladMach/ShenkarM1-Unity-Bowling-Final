@@ -15,15 +15,15 @@ public class Score : MonoBehaviour
     public int[] turnScore;
 
     private bool isNextTurn = true;
+    public bool isStrike = false;
 
     [Header("UI Elements")]
     public TextMeshProUGUI[] turnScoreText;
 
-    public GameObject pinPrefab;
     private GameManager gameManager;
+    private Ball ball;
     
 
-    
 
     private void Start()
     {     
@@ -39,7 +39,7 @@ public class Score : MonoBehaviour
         turnScoreText[9].text = "Turn10 Score: " + startScore.ToString();
 
         gameManager = FindObjectOfType<GameManager>();
-        
+        ball = FindObjectOfType<Ball>();    
         PlayerPrefs.SetInt("StartScore", startScore);
     }
 
@@ -48,18 +48,18 @@ public class Score : MonoBehaviour
         TurnsSystem();
         CalculateFinalScore();
         Strike();
+        PlayerPrefs.SetInt("CurrentScore", _currentScore);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("ScoreTrigger"))
-        {   
-            Debug.Log("Pin Fell");  
-            _currentScore++;
-            PlayerPrefs.SetInt("CurrentScore", _currentScore);  
-            
-        }        
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("ScoreTrigger"))
+    //    {   
+    //        Debug.Log("Pin Fell");  
+    //        _currentScore++;
+    //          
+    //    }        
+    //}
 
  
     public void TurnsSystem()
@@ -73,7 +73,7 @@ public class Score : MonoBehaviour
         Turn7();
         Turn8();
         Turn9();
-        Turn10();
+        
     }
 
     public void Strike()
@@ -81,129 +81,111 @@ public class Score : MonoBehaviour
         if (_currentScore == 10)
         {
             Debug.Log("Strike!");
+            isStrike = true;  
         }
     }
 
     public void Turn1()
-    {
-        if (gameManager.turns == 2)
+    {  
+        if (gameManager.frames == 2)
         {
             ResetScore();
             turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;            
-            gameManager.turns++;   
+            isNextTurn = true;
+            
         }  
     }
 
     public void Turn2()
     {  
-        if (gameManager.turns == 4)
+        if (gameManager.frames == 3)
         {
             ResetScore();         
             turnScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns++;
             
         }        
     }
 
     public void Turn3()
     {
-        if (gameManager.turns == 6)
+        if (gameManager.frames == 4)
         { 
             ResetScore();
             turnScoreText[2].text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns++;
         }
     }
 
     public void Turn4()
     {
-        if (gameManager.turns == 8)
+        if (gameManager.frames == 5)
         {
             ResetScore();
             turnScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns++;
         }
     }
 
     public void Turn5()
     {
-        if (gameManager.turns == 10)
+        if (gameManager.frames == 6)
         {
             ResetScore();
             turnScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns++;
         }
     }
 
     public void Turn6()
     {
-        if (gameManager.turns == 12)
+        if (gameManager.frames == 7)
         {
             ResetScore();
             turnScoreText[5].text = "Turn6 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns++;
         }
     }
 
     public void Turn7()
     {
-        if (gameManager.turns == 14)
+        if (gameManager.frames == 8)
         {
             ResetScore();
             turnScoreText[6].text = "Turn7 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns++;
         }
     }
 
     public void Turn8()
     {
-        if (gameManager.turns == 16)
+        if (gameManager.frames == 9)
         {
             ResetScore();
             turnScoreText[7].text = "Turn8 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns++;
         }
     }
 
     public void Turn9()
     {
-        if (gameManager.turns == 18)
+        if (gameManager.frames == 10)
         {
             ResetScore();
             turnScoreText[8].text = "Turn9 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
-            gameManager.turns++;
+            isNextTurn = true;   
         }
     }
 
-    public void Turn10()
-    {
-        if (gameManager.turns == 20)
-        {
-            ResetScore();
-            turnScoreText[9].text = "Turn10 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[9] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            //isNextTurn = true;
-            //gameManager.turns = gameManager.turns + 1;
-        }
-    }
 
 
     private void ResetScore()
