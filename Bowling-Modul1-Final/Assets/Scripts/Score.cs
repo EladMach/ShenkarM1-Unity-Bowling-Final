@@ -10,17 +10,16 @@ public class Score : MonoBehaviour
 {
     [Header("Variables")]
     private int startScore;
-    public int score;
     public int _currentScore;
     public int totalScore;
-    public int[] turnScore;
+    public int[] frameScore;
 
     private bool isNextTurn = true;
     public bool isStrike = false;
     
 
     [Header("UI Elements")]
-    public TextMeshProUGUI[] turnScoreText;
+    public TextMeshProUGUI[] frameScoreText;
 
     private GameManager gameManager;
     private Ball ball;
@@ -29,16 +28,16 @@ public class Score : MonoBehaviour
 
     private void Start()
     {     
-        turnScoreText[0].text = "Turn1 Score: " + startScore.ToString();
-        turnScoreText[1].text = "Turn2 Score: " + startScore.ToString();
-        turnScoreText[2].text = "Turn3 Score: " + startScore.ToString();
-        turnScoreText[3].text = "Turn4 Score: " + startScore.ToString();
-        turnScoreText[4].text = "Turn5 Score: " + startScore.ToString();
-        turnScoreText[5].text = "Turn6 Score: " + startScore.ToString();
-        turnScoreText[6].text = "Turn7 Score: " + startScore.ToString();
-        turnScoreText[7].text = "Turn8 Score: " + startScore.ToString();
-        turnScoreText[8].text = "Turn9 Score: " + startScore.ToString();
-        turnScoreText[9].text = "Turn10 Score: " + startScore.ToString();
+        frameScoreText[0].text = "Frame1 Score: " + startScore.ToString();
+        frameScoreText[1].text = "Frame2 Score: " + startScore.ToString();
+        frameScoreText[2].text = "Frame3 Score: " + startScore.ToString();
+        frameScoreText[3].text = "Frame4 Score: " + startScore.ToString();
+        frameScoreText[4].text = "Frame5 Score: " + startScore.ToString();
+        frameScoreText[5].text = "Frame6 Score: " + startScore.ToString();
+        frameScoreText[6].text = "Frame7 Score: " + startScore.ToString();
+        frameScoreText[7].text = "Frame8 Score: " + startScore.ToString();
+        frameScoreText[8].text = "Frame9 Score: " + startScore.ToString();
+        frameScoreText[9].text = "Frame10 Score: " + startScore.ToString();
 
         gameManager = FindObjectOfType<GameManager>();
         ball = FindObjectOfType<Ball>();    
@@ -49,16 +48,8 @@ public class Score : MonoBehaviour
     {
         TurnsSystem();
         CalculateFinalScore();
-        Strike();
+        //Strike();
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Ball"))
-        {   
-                
-        }        
     }
 
  
@@ -78,21 +69,18 @@ public class Score : MonoBehaviour
 
     public void Strike()
     {
-        if (_currentScore == 10)
-        {
-            Debug.Log("Strike!");
-            isStrike = true;  
-        }
+        Debug.Log("Strike!");
+        isStrike = true;  
+        //gameManager.ResetPins();
+        //gameManager.frames++;
     }
 
     public void Turn1()
     {  
         if (gameManager.frames == 1)
         {
-            ResetScore();
-            turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;  
+            frameScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
         }  
     }
 
@@ -101,9 +89,9 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 2)
         {
             ResetScore();         
-            turnScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            frameScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            
             
         }        
     }
@@ -113,9 +101,9 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 3)
         { 
             ResetScore();
-            turnScoreText[2].text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            frameScoreText[2].text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+           
         }
     }
 
@@ -124,9 +112,8 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 4)
         {
             ResetScore();
-            turnScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            frameScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
     }
 
@@ -135,9 +122,8 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 5)
         {
             ResetScore();
-            turnScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            frameScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
     }
 
@@ -146,9 +132,8 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 7)
         {
             ResetScore();
-            turnScoreText[5].text = "Turn6 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            frameScoreText[5].text = "Turn6 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
     }
 
@@ -157,9 +142,8 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 8)
         {
             ResetScore();
-            turnScoreText[6].text = "Turn7 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            frameScoreText[6].text = "Turn7 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
     }
 
@@ -168,9 +152,8 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 9)
         {
             ResetScore();
-            turnScoreText[7].text = "Turn8 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
+            frameScoreText[7].text = "Turn8 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
     }
 
@@ -179,9 +162,8 @@ public class Score : MonoBehaviour
         if (gameManager.frames == 10)
         {
             ResetScore();
-            turnScoreText[8].text = "Turn9 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            turnScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;   
+            frameScoreText[8].text = "Turn9 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
         }
     }
 
@@ -198,7 +180,7 @@ public class Score : MonoBehaviour
     
     public void CalculateFinalScore()
     {
-        totalScore = turnScore[0] +turnScore[1] + turnScore[2] + turnScore[3] + turnScore[4] + turnScore[5] + turnScore[6] + turnScore[7] + turnScore[8] + turnScore[9];
+        totalScore = frameScore[0] +frameScore[1] + frameScore[2] + frameScore[3] + frameScore[4] + frameScore[5] + frameScore[6] + frameScore[7] + frameScore[8] + frameScore[9];
 
         PlayerPrefs.SetInt("FinalScore", totalScore);
     }

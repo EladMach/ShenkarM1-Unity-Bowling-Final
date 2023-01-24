@@ -1058,7 +1058,7 @@ MonoBehaviour:
   frames: 0
   timeBar: {fileID: 119048164}
   timeText: {fileID: 1286068193}
-  turnsText: {fileID: 928092683}
+  framesText: {fileID: 928092683}
   pins:
   - {fileID: 366904709}
   - {fileID: 1164335863}
@@ -1682,7 +1682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011789204188, guid: 05a515ae3e4e9944fb587de7d3f03009, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.7
+      value: -9.57
       objectReference: {fileID: 0}
     - target: {fileID: 4000011789204188, guid: 05a515ae3e4e9944fb587de7d3f03009, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2223,7 +2223,7 @@ GameObject:
   - component: {fileID: 928092684}
   - component: {fileID: 928092683}
   m_Layer: 5
-  m_Name: Turnstxt
+  m_Name: Framestxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Turn:'
+  m_text: 'Frame:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -4116,7 +4116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771538616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18, y: 0.153, z: 12.37}
+  m_LocalPosition: {x: -0.18, y: 0.153, z: 11.925}
   m_LocalScale: {x: 6.929733, y: 0.53131294, z: 6.0031424}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4135,14 +4135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec85eb5914d7c6e4694275d5710a7b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
   _currentScore: 0
   totalScore: 0
-  turnScore: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  frameScore: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   isStrike: 0
-  turnScoreText:
+  frameScoreText:
   - {fileID: 1836219187}
-  - {fileID: 1376787780}
   - {fileID: 1486995305}
   - {fileID: 1705901097}
   - {fileID: 540753890}
@@ -4150,6 +4148,7 @@ MonoBehaviour:
   - {fileID: 813803021}
   - {fileID: 1215407174}
   - {fileID: 1097333025}
+  - {fileID: 113055497}
   - {fileID: 113055497}
 --- !u!1001 &1803921447
 PrefabInstance:

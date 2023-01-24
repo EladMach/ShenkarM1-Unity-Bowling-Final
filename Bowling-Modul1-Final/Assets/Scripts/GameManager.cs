@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     public Slider timeBar;
     public TextMeshProUGUI timeText;
-    public TextMeshProUGUI turnsText;
+    public TextMeshProUGUI framesText;
 
     private Score scoreScript;
     private Ball ball;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
    
     private void Start()
     {
-        frames = 1;
+        frames = 0;
         pins = GameObject.FindGameObjectsWithTag("Pin");
         ball = FindObjectOfType<Ball>();
         scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();  
@@ -37,10 +37,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {          
         StartCoroutine(TimerDown());
-        turnsText.text = "Turn: " + frames;
+        framesText.text = "Frame: " + frames;
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
         CountPins();
-
     }
 
     public IEnumerator TimerDown()
@@ -58,33 +57,29 @@ public class GameManager : MonoBehaviour
 
     public void CountPins()
     {
-        foreach (GameObject pin in pins)
+        for (int i = 0; i < pins.Length; i++)
         {
-            if (pin.transform.eulerAngles.z > 5 && pin.transform.eulerAngles.z < 355 && pin.activeSelf)
+            if (pins[i].transform.eulerAngles.z > 30 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
             {
-                scoreScript.score++;
-                scoreScript._currentScore = scoreScript.score;
-                //pin.GetComponent<Pin>().ResetPin();
-                pin.SetActive(false);
-                
+                scoreScript._currentScore++;
+                pins[i].SetActive(false);              
             }
-
         }
+
     }
 
     public void ResetPins()
     {
-        foreach (GameObject pin in pins)
+        if (ball._throws == 2)
         {
-            pin.GetComponent<Pin>().ResetPin();
-            pin.SetActive(true);
-            ball.BallReset();             
+            for (int i = 0; i < pins.Length; i++)
+            {
+                pins[i].GetComponent<Pin>().ResetPin();
+                pins[i].SetActive(true);   
+            }
+    
         }
-    }
 
-    public void UpdateFrame()
-    {
-        frames = frames + 1;
     }
 
 

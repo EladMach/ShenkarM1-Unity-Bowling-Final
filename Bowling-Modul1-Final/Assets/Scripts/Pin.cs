@@ -33,15 +33,5 @@ public class Pin : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    
-
-    private void SetPinsFalse()
-    {   
-        foreach (GameObject pin in gameManager.pins)
-            if (pin.transform.rotation.x >= 20f)
-            {
-                Debug.Log("Set pins false  is Working");
-            }     
-    }
 
 }

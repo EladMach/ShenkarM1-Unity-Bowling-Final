@@ -62,9 +62,18 @@ public class Ball : MonoBehaviour
             audioSource.PlayOneShot(throwSound, volume);
             _isThrown = true; 
             _isMoving = true;
-            _throws++;      
+            _throws++;
+            gameManager.frames = gameManager.frames + 1;
         }
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("ScoreGround"))
+        {
+            BallReset();
+        }
     }
 
     public void BallReset()
