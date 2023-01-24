@@ -9,13 +9,15 @@ using Unity.VisualScripting;
 public class Score : MonoBehaviour
 {
     [Header("Variables")]
-    private int startScore; 
+    private int startScore;
+    public int score;
     public int _currentScore;
     public int totalScore;
     public int[] turnScore;
 
     private bool isNextTurn = true;
     public bool isStrike = false;
+    
 
     [Header("UI Elements")]
     public TextMeshProUGUI[] turnScoreText;
@@ -51,15 +53,13 @@ public class Score : MonoBehaviour
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("ScoreTrigger"))
-    //    {   
-    //        Debug.Log("Pin Fell");  
-    //        _currentScore++;
-    //          
-    //    }        
-    //}
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Ball"))
+        {   
+                
+        }        
+    }
 
  
     public void TurnsSystem()
@@ -87,19 +87,18 @@ public class Score : MonoBehaviour
 
     public void Turn1()
     {  
-        if (gameManager.frames == 2)
+        if (gameManager.frames == 1)
         {
             ResetScore();
             turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextTurn = true;
-            
+            isNextTurn = true;  
         }  
     }
 
     public void Turn2()
     {  
-        if (gameManager.frames == 3)
+        if (gameManager.frames == 2)
         {
             ResetScore();         
             turnScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
@@ -111,7 +110,7 @@ public class Score : MonoBehaviour
 
     public void Turn3()
     {
-        if (gameManager.frames == 4)
+        if (gameManager.frames == 3)
         { 
             ResetScore();
             turnScoreText[2].text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
@@ -122,7 +121,7 @@ public class Score : MonoBehaviour
 
     public void Turn4()
     {
-        if (gameManager.frames == 5)
+        if (gameManager.frames == 4)
         {
             ResetScore();
             turnScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
@@ -133,7 +132,7 @@ public class Score : MonoBehaviour
 
     public void Turn5()
     {
-        if (gameManager.frames == 6)
+        if (gameManager.frames == 5)
         {
             ResetScore();
             turnScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);

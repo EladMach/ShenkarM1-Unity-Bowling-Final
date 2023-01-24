@@ -62,20 +62,21 @@ public class Ball : MonoBehaviour
             audioSource.PlayOneShot(throwSound, volume);
             _isThrown = true; 
             _isMoving = true;
-            _throws++;  
+            _throws++;      
         }
 
     }
 
-    public IEnumerator BallReset()
+    public void BallReset()
     {
-
         if (transform.position.z >= -4.0f)
         {
-            yield return new WaitForSeconds(2.0f);
             _isThrown = false;
             _isMoving = false;
-            transform.position = startingPosition;    
+            transform.position = startingPosition;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            transform.rotation = Quaternion.identity;
         }
 
     }
@@ -87,5 +88,6 @@ public class Ball : MonoBehaviour
             audioSource.PlayOneShot(hitSound, volume);
         }
     }
+
 
 }

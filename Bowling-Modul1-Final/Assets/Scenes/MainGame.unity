@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1caa910e63902943af0343a0ad1f83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frames: 1
+  frames: 0
   timeBar: {fileID: 119048164}
   timeText: {fileID: 1286068193}
   turnsText: {fileID: 928092683}
@@ -1682,7 +1682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011789204188, guid: 05a515ae3e4e9944fb587de7d3f03009, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -10.7
       objectReference: {fileID: 0}
     - target: {fileID: 4000011789204188, guid: 05a515ae3e4e9944fb587de7d3f03009, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4116,7 +4116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771538616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18, y: 0.153, z: 8.182}
+  m_LocalPosition: {x: -0.18, y: 0.153, z: 12.37}
   m_LocalScale: {x: 6.929733, y: 0.53131294, z: 6.0031424}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4135,6 +4135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec85eb5914d7c6e4694275d5710a7b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   _currentScore: 0
   totalScore: 0
   turnScore: 00000000000000000000000000000000000000000000000000000000000000000000000000000000

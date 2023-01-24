@@ -5,11 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using TMPro.Examples;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Variables")]
-    public int frames = 0;
+    public int frames; 
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
     
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
    
     private void Start()
     {
+        frames = 1;
         pins = GameObject.FindGameObjectsWithTag("Pin");
         ball = FindObjectOfType<Ball>();
         scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();  
@@ -38,7 +40,9 @@ public class GameManager : MonoBehaviour
         turnsText.text = "Turn: " + frames;
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
         CountPins();
+
     }
+
     public IEnumerator TimerDown()
     {
         if (isTimerOn == true)
@@ -56,20 +60,31 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject pin in pins)
         {
-            if (pin.transform.eulerAngles.z > 100 && pin.transform.eulerAngles.z < 355 && ball.transform.position.z >= 8)
+            if (pin.transform.eulerAngles.z > 5 && pin.transform.eulerAngles.z < 355 && pin.activeSelf)
             {
-                scoreScript._currentScore++;   
-                pin.GetComponent<Pin>().ResetPin();
+                scoreScript.score++;
+                scoreScript._currentScore = scoreScript.score;
+                //pin.GetComponent<Pin>().ResetPin();
                 pin.SetActive(false);
-                StartCoroutine(ball.BallReset());
+                
             }
-            
+
         }
     }
 
-    public void NextFrame()
+    public void ResetPins()
     {
-        frames++;
+        foreach (GameObject pin in pins)
+        {
+            pin.GetComponent<Pin>().ResetPin();
+            pin.SetActive(true);
+            ball.BallReset();             
+        }
+    }
+
+    public void UpdateFrame()
+    {
+        frames = frames + 1;
     }
 
 
