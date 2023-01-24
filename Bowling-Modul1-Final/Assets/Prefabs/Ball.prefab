@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 33000013749516188}
   - component: {fileID: 23000012790457138}
   - component: {fileID: 135000010840166142}
-  - component: {fileID: -6190376192385699813}
   - component: {fileID: 1161214704678494785}
+  - component: {fileID: -6190376192385699813}
   - component: {fileID: 9133269654945437233}
   m_Layer: 0
   m_Name: Ball
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1000014216199400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.27, y: 0.27, z: 0.27}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,24 +100,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.08
   m_Center: {x: -0.000002026648, y: 0.0030245779, z: -2.149092e-17}
---- !u!114 &-6190376192385699813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000014216199400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d298ffcf031ba49a4433de8cedb02e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _powerMultiplier: 110
-  _movementSpeed: 10
-  _isThrown: 0
-  _isMoving: 0
-  _throws: 0
-  turns: 0
 --- !u!54 &1161214704678494785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134,6 +116,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-6190376192385699813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014216199400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d298ffcf031ba49a4433de8cedb02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 9133269654945437233}
+  hitSound: {fileID: 8300000, guid: f1490fd449560744d9533385c19275d2, type: 3}
+  throwSound: {fileID: 8300000, guid: 3cd723ca12167ba4cbcaf955b181cb05, type: 3}
+  _powerMultiplier: 110
+  _movementSpeed: 10
+  _isThrown: 0
+  _isMoving: 0
+  _throws: 0
 --- !u!82 &9133269654945437233
 AudioSource:
   m_ObjectHideFlags: 0
@@ -144,9 +146,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3cd723ca12167ba4cbcaf955b181cb05, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.535
+  m_Volume: 0.392
   m_Pitch: 1
   Loop: 0
   Mute: 0

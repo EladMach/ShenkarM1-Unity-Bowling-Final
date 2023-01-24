@@ -18,10 +18,10 @@ public class Score : MonoBehaviour
 
     [Header("UI Elements")]
     public TextMeshProUGUI[] turnScoreText;
-   
-    private SpawnManager spawnManager;
+
+    public GameObject pinPrefab;
     private GameManager gameManager;
-    public GameObject pinsPrefab;
+    
 
     
 
@@ -38,7 +38,6 @@ public class Score : MonoBehaviour
         turnScoreText[8].text = "Turn9 Score: " + startScore.ToString();
         turnScoreText[9].text = "Turn10 Score: " + startScore.ToString();
 
-        spawnManager = FindObjectOfType<SpawnManager>();
         gameManager = FindObjectOfType<GameManager>();
         
         PlayerPrefs.SetInt("StartScore", startScore);
@@ -54,14 +53,14 @@ public class Score : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ScoreTrigger"))
-        {
-            Debug.Log("Pin Fell");
+        {   
+            Debug.Log("Pin Fell");  
             _currentScore++;
-            PlayerPrefs.SetInt("CurrentScore", _currentScore);          
+            PlayerPrefs.SetInt("CurrentScore", _currentScore);  
+            
         }        
     }
 
-    
  
     public void TurnsSystem()
     {
@@ -93,22 +92,19 @@ public class Score : MonoBehaviour
             turnScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;            
-            gameManager.turns = gameManager.turns + 1;
-            SceneManager.LoadScene(0);
-           
-        }
-        
+            gameManager.turns++;   
+        }  
     }
 
     public void Turn2()
-    {
+    {  
         if (gameManager.turns == 4)
         {
             ResetScore();         
             turnScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
             
         }        
     }
@@ -121,7 +117,7 @@ public class Score : MonoBehaviour
             turnScoreText[2].text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
         }
     }
 
@@ -133,7 +129,7 @@ public class Score : MonoBehaviour
             turnScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
         }
     }
 
@@ -145,7 +141,7 @@ public class Score : MonoBehaviour
             turnScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
         }
     }
 
@@ -157,7 +153,7 @@ public class Score : MonoBehaviour
             turnScoreText[5].text = "Turn6 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
         }
     }
 
@@ -169,7 +165,7 @@ public class Score : MonoBehaviour
             turnScoreText[6].text = "Turn7 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
         }
     }
 
@@ -181,7 +177,7 @@ public class Score : MonoBehaviour
             turnScoreText[7].text = "Turn8 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
         }
     }
 
@@ -193,7 +189,7 @@ public class Score : MonoBehaviour
             turnScoreText[8].text = "Turn9 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             turnScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
             isNextTurn = true;
-            gameManager.turns = gameManager.turns + 1;
+            gameManager.turns++;
         }
     }
 

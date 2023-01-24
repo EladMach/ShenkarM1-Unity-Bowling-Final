@@ -7,51 +7,51 @@ public class Pin : MonoBehaviour
     private Rigidbody rb;
     private Ball ball;
     private GameManager gameManager;
-    private Vector3 startingPosition;
-    private AudioSource audioSource;
-    private SpawnManager spawnManager;
+    
 
-
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
     
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        startingPosition = transform.position;
+        
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         ball = FindObjectOfType<Ball>();  
-        audioSource = gameObject.GetComponent<AudioSource>();      
+        
+        
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
-    void Update()
+    private void Update()
     {
-        FreezePinPosition();
-       
+        
     }
 
-    public void FreezePinPosition()
+    public void ResetPin()
     {
-        if (ball._isThrown == false)
-        {
-            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
-
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-        }
-        if (ball._isThrown == true)
-        {
-            rb.constraints = RigidbodyConstraints.None;
-        }
-  
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Ball")
+        if (other.gameObject.CompareTag("ScoreGround"))
         {
-            audioSource.Play();    
+            SetPinsFalse();
         }
     }
 
-   
+    private void SetPinsFalse()
+    {   
+        foreach (GameObject pin in gameManager.pins)
+        {
+            pin.SetActive(false);
+        }
+    }
 
 }

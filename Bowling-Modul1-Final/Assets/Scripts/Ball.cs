@@ -13,10 +13,13 @@ public class Ball : MonoBehaviour
     private Pin pinScript;
     private GameManager gameManager;
     private Power powerScript;
-    private AudioSource audioSource;
-    private SpawnManager spawnManager;
+    public AudioSource audioSource;
+    public AudioClip hitSound;   
+    public AudioClip throwSound;
+
 
     [Header("GameObjects")]
+        
   
     [Header("Variables")]
     public float _powerMultiplier = 150f;
@@ -24,8 +27,8 @@ public class Ball : MonoBehaviour
     public bool _isThrown = false;
     public bool _isMoving = false;
     public int _throws;
+    public float volume = 0.3f;
 
-    
 
     private void Start()
     {
@@ -34,7 +37,8 @@ public class Ball : MonoBehaviour
         powerScript = FindObjectOfType<Power>();
         pinScript = FindObjectOfType<Pin>();
         gameManager = FindObjectOfType<GameManager>();
-        spawnManager = FindObjectOfType<SpawnManager>();
+        audioSource.clip = hitSound;
+        audioSource.clip = throwSound;
         audioSource = GetComponent<AudioSource>();
         startingPosition = new Vector3(0, 0.35f, -10f);
     }
@@ -54,12 +58,12 @@ public class Ball : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {
+        {       
             rb.AddForce(Vector3.forward * powerScript.powerValue * _powerMultiplier);
-            audioSource.Play();
+            audioSource.PlayOneShot(throwSound, volume);
             _isThrown = true; 
             _isMoving = true;
-            _throws = _throws + 1;
+            _throws++;
         }
 
     }
@@ -70,7 +74,7 @@ public class Ball : MonoBehaviour
         {
             yield return new WaitForSeconds(2.0f);
             _isThrown = false;
-            _isMoving = false;                       
+            _isMoving = false;
             transform.position = startingPosition;
             gameManager.NextTurn();
         }
@@ -78,6 +82,13 @@ public class Ball : MonoBehaviour
         yield return null;
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Pin"))
+        {
+            audioSource.PlayOneShot(hitSound, volume);
+        }
+    }
+
 
 }

@@ -19,18 +19,16 @@ public class GameManager : MonoBehaviour
 
     private Score scoreScript;
     private Ball ball;
-    private SpawnManager spawnManager;
-    public GameObject pins;
+    
+    public GameObject[] pins;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+   
     private void Start()
     {
+        //pins = GameObject.FindGameObjectsWithTag("Pin");
         ball = FindObjectOfType<Ball>();
         scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
-        spawnManager = FindObjectOfType<SpawnManager>();
+        
         turns = Mathf.Clamp(turns, 0, 20);
         
     }
@@ -57,9 +55,20 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextTurn()
-    {
+    {       
         turns = ball._throws;  
     }
+
+    public void ResetPins()
+    {
+        foreach (GameObject pin in pins)
+        {
+            pin.GetComponent<Pin>().ResetPin();
+            pin.SetActive(true);
+        }
+    }
+
+    
 
     //private void RestartGame()
     //{
