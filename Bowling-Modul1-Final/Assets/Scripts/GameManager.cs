@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor.AnimatedValues;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,8 +24,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI framesText;
     public TextMeshProUGUI throwsText;
     public TextMeshProUGUI totalScoreText;
+    public TextMeshProUGUI playerNameText;
     public GameObject optionsPanel;
-    
     
 
     private Score scoreScript;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         positions = new Vector3[pins.Length];
         audioSource = GetComponent<AudioSource>();
         audioSource.Play();
+        playerNameText.text = "Player: " + PlayerPrefs.GetString("PlayerName");
     }
 
     private void Update()
@@ -73,23 +75,22 @@ public class GameManager : MonoBehaviour
         }   
     }
 
-    public void ResetTimer()
-    {
-        if (timeBar.value == 0)
-        {
-            timeBar.value = 20;
-            TimerDown();
-        }
-    }
-
     public void CountPins()
     {
         for (int i = 0; i < pins.Length; i++)
         {
-            if (pins[i].transform.eulerAngles.z > 50 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
+            if (pins[i].transform.eulerAngles.z > 30 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
             {
                 scoreScript._currentScore++;
                 pins[i].SetActive(false);
+                if (i == 10)
+                {
+                    scoreScript.Strike();
+                }
+                if (i == 10 && ball._throwsCount == 2)
+                {
+                    Debug.Log("Spare!");
+                }
             }           
         }
     }
@@ -139,4 +140,11 @@ public class GameManager : MonoBehaviour
         optionsPanel.SetActive(false);
     }
 
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        isOptions = false;
+        SceneManager.LoadScene(0);
+    }
 }

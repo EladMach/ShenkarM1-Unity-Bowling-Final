@@ -50,6 +50,7 @@ public class Score : MonoBehaviour
     {
         TurnsSystem();
         CalculateFinalScore();
+        HighScore();
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
     }
 
@@ -84,8 +85,8 @@ public class Score : MonoBehaviour
         if (ball._throwsCount == 2 && isNextFrame)
         {
             ResetScore();
-            gameManager.ResetPins();
-            gameManager.frameCounter++;
+            gameManager.ResetPins();  
+            gameManager.frameCounter++; 
         }
 
     }
@@ -241,6 +242,14 @@ public class Score : MonoBehaviour
         totalScore = frameScore[0] + frameScore[1] + frameScore[2] + frameScore[3] + frameScore[4] + frameScore[5] + frameScore[6] + frameScore[7] + frameScore[8] + frameScore[9];
 
         PlayerPrefs.SetInt("FinalScore", totalScore);
+    }
+
+    public void HighScore()
+    {
+        if (PlayerPrefs.GetInt("HighScore") < totalScore)
+        {
+            PlayerPrefs.SetInt("HighScore", totalScore);
+        }
     }
 
  }
