@@ -13,7 +13,7 @@ public class Score : MonoBehaviour
     public int _currentScore;
     public int totalScore;
     public int[] frameScore;
-
+    public bool isGameOver = false;
     public bool isNextFrame = false;
     public bool isStrike = false;
     
@@ -50,7 +50,6 @@ public class Score : MonoBehaviour
     {
         TurnsSystem();
         CalculateFinalScore();
-        Strike();
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
     }
 
@@ -63,99 +62,216 @@ public class Score : MonoBehaviour
         Frame4();
         Frame5();
         Frame6();
+        Frame7();
+        Frame8();
+        Frame9();
+        Frame10();
     }
 
     public void Strike()
     {
-        if (_currentScore == 10)
-        {
-            Debug.Log("Strike!");
-            isStrike = true;
-            gameManager.ResetPins();
-            gameManager.frameCounter++;
-        }
-
+        Debug.Log("Strike!");
+        isStrike = true;
+        gameManager.ResetPins();
+        gameManager.frameCounter++;
     }
 
     public void Frame1()
     {
-        if (gameManager.frameCounter == 1 && isNextFrame)
+        if (ball._throwsCount == 1 && isNextFrame)
         {
             frameScoreText[0].text = "Frame1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            if (frameScore[0] == 10 && ball._throwsCount == 1)
+            {
+                Strike();
+                isStrike = false;
+            }
         }
-        else if (gameManager.frameCounter == 2 && isNextFrame)
+        if (ball._throwsCount == 2 && isNextFrame)
         {
             ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
         }
-                     
+        if (ball._throwsCount == 2 && frameScore[0] == 10)
+        {
+            Debug.Log("Spare!");
+        }
+
     }
 
     public void Frame2()
     {
-        if (gameManager.frameCounter == 3 && isNextFrame)
+        if (ball._throwsCount == 3 && isNextFrame)
         {
             frameScoreText[1].text = "Frame2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
-        if (gameManager.frameCounter == 4 && isNextFrame)
+        if (ball._throwsCount == 4 && isNextFrame)
         { 
             ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 4 && frameScore[1] == 10)
+        {
+            Debug.Log("Spare!");
         }
     }
 
     public void Frame3()
     {
-        if (gameManager.frameCounter == 5)
+        if (ball._throwsCount == 5 && isNextFrame)
         {
-            frameScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextFrame = true;
+            frameScoreText[2].text = "Frame3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
         }
-        if (gameManager.frameCounter == 6 && isNextFrame)
+        if (ball._throwsCount == 6 && isNextFrame)
         {
             ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 6 && frameScore[2] == 10)
+        {
+            Debug.Log("Spare!");
         }
     }
 
     public void Frame4()
     {
-        if (gameManager.frameCounter == 7)
+        if (ball._throwsCount == 7 && isNextFrame)
         {
-            frameScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextFrame = true;
+            frameScoreText[3].text = "Frame4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);           
         }
-        if (gameManager.frameCounter == 8)
+        if (ball._throwsCount == 8 && isNextFrame)
         {
             ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 8 && frameScore[3] == 10)
+        {
+            Debug.Log("Spare!");
         }
     }
 
     public void Frame5()
     {
-        if (gameManager.frameCounter == 9)
+        if (ball._throwsCount == 9 && isNextFrame)
         {
-            frameScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextFrame = true;
+            frameScoreText[4].text = "Frame5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
-        if (gameManager.frameCounter == 10)
+        if (ball._throwsCount == 10 && isNextFrame)
         {
             ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 10 && frameScore[4] == 10)
+        {
+            Debug.Log("Spare!");
         }
     }
 
     public void Frame6()
     {
-        if (gameManager.frameCounter == 11)
+        if (ball._throwsCount == 11 && isNextFrame)
         {
-            frameScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            isNextFrame = true;
+            frameScoreText[5].text = "Frame5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);    
         }
-        if (gameManager.frameCounter == 12)
+        if (ball._throwsCount == 12 && isNextFrame)
         {
             ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 12 && frameScore[5] == 10)
+        {
+            Debug.Log("Spare!");
         }
     }
 
+    public void Frame7()
+    {
+        if (ball._throwsCount == 13 && isNextFrame)
+        {
+            frameScoreText[6].text = "Frame5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+        }
+        if (ball._throwsCount == 14 && isNextFrame)
+        {
+            ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 14 && frameScore[6] == 10)
+        {
+            Debug.Log("Spare!");
+        }
+    }
+
+    public void Frame8()
+    {
+        if (ball._throwsCount == 15 && isNextFrame)
+        {
+            frameScoreText[7].text = "Frame5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+        }
+        if (ball._throwsCount == 16 && isNextFrame)
+        {
+            ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 16 && frameScore[7] == 10)
+        {
+            Debug.Log("Spare!");
+        }
+    }
+
+    public void Frame9()
+    {
+        if (ball._throwsCount == 17 && isNextFrame)
+        {
+            frameScoreText[8].text = "Frame5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+        }
+        if (ball._throwsCount == 18 && isNextFrame)
+        {
+            ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+        }
+        if (ball._throwsCount == 18 && frameScore[8] == 10)
+        {
+            Debug.Log("Spare!");
+        }
+    }
+
+    public void Frame10()
+    {
+        if (ball._throwsCount == 19 && isNextFrame)
+        {
+            frameScoreText[9].text = "Frame5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[9] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+        }
+        if (ball._throwsCount == 20 && isNextFrame)
+        {
+            ResetScore();
+            gameManager.ResetPins();
+            gameManager.frameCounter++;
+            isGameOver = true;
+        }
+        if (ball._throwsCount == 20 && frameScore[9] == 10)
+        {
+            Debug.Log("Spare!");
+        }
+    }
 
     public void ResetScore()
     {
@@ -163,8 +279,7 @@ public class Score : MonoBehaviour
         {
             _currentScore = startScore;
             isNextFrame = false;
-        }
-        
+        } 
     }
     
     public void CalculateFinalScore()
@@ -173,4 +288,5 @@ public class Score : MonoBehaviour
 
         PlayerPrefs.SetInt("FinalScore", totalScore);
     }
+
  }

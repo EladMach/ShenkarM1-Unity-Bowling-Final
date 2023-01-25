@@ -65,6 +65,7 @@ public class Ball : MonoBehaviour
             _isThrown = true; 
             _isMoving = true;   
         }
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -90,12 +91,7 @@ public class Ball : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
-            ThrowsSystem();
-            if (_throwsCount == 3)
-            {
-                scoreScript.isNextFrame = true;
-                gameManager.ResetPins();
-            }
+            ThrowsSystem();    
         }
 
     }

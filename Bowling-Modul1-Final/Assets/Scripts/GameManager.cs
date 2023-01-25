@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEditor.AnimatedValues;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI framesText;
     public TextMeshProUGUI throwsText;
+    public TextMeshProUGUI totalScoreText;
 
     private Score scoreScript;
     private Ball ball;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TimerDown());
         framesText.text = "Frame: " + frameCounter.ToString();
         throwsText.text = "Throws: " + ball._throwsCount.ToString();
+        totalScoreText.text = "Total Score: " + scoreScript.totalScore.ToString();
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
         CountPins();
     }
@@ -69,12 +71,8 @@ public class GameManager : MonoBehaviour
             {
                 scoreScript._currentScore++;
                 pins[i].SetActive(false);
-            }
-            
+            }           
         }
-
-        
-
     }
 
     public void ResetPins()
@@ -84,21 +82,26 @@ public class GameManager : MonoBehaviour
             pin.GetComponent<Pin>().ResetPin();
             pin.SetActive(true);
         }
+        FrameSystem();
     }
 
 
     public void FrameSystem()
     {
-         frameCounter++;
-         frames[frameCounter] = frameCounter;     
+        if (scoreScript.isNextFrame == true)
+        {
+            frameCounter++;
+            frames[frameCounter] = frameCounter;
+        }        
     }
 
-    //private void RestartGame()
-    //{
-    //    if (turns == 20)
-    //    {
-    //        SceneManager.LoadScene(0);
-    //    }
-    //}
+    private void RestartGame()
+    {
+        if (scoreScript.isGameOver == true)
+        {
+            Debug.Log("GameEnded");
+            //SceneManager.LoadScene(0);
+        }
+    }
 
 }
