@@ -27,12 +27,16 @@ public class Ball : MonoBehaviour
     public float _movementSpeed = 30.0f;
     public bool _isThrown = false;
     public bool _isMoving = false;
-    public int _throws = 0;
+    public bool isNextFrame = false;
+    public int[] _throws;
+    public int _throwsCount;
     public float volume = 0.3f;
 
 
     private void Start()
-    { 
+    {
+        _throwsCount = 0;
+        _throws = new int[20];
         rb = GetComponent<Rigidbody>();
         startingPosition = new Vector3(0, 0.35f, -7.5f);       
         powerScript = FindObjectOfType<Power>();
@@ -61,11 +65,8 @@ public class Ball : MonoBehaviour
             rb.AddForce(Vector3.forward * powerScript.powerValue * _powerMultiplier);
             audioSource.PlayOneShot(throwSound, volume);
             _isThrown = true; 
-            _isMoving = true;
-            _throws++;
-            gameManager.frames = gameManager.frames + 1;
+            _isMoving = true;   
         }
-
     }
 
     private void OnTriggerStay(Collider other)
@@ -73,6 +74,11 @@ public class Ball : MonoBehaviour
         if (other.gameObject.CompareTag("ScoreGround"))
         {
             BallReset();
+            isNextFrame = true;
+        }
+        else
+        {
+            isNextFrame = false;
         }
     }
 
@@ -86,8 +92,16 @@ public class Ball : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
+            gameManager.FrameSystem();
+            ThrowsSystem();
         }
 
+    }
+
+    public void ThrowsSystem()
+    {
+        _throwsCount++;
+        _throws[_throwsCount] = _throwsCount;
     }
 
     private void OnCollisionEnter(Collision collision)

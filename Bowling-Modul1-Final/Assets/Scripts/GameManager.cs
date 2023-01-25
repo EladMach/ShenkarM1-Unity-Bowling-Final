@@ -4,13 +4,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
-using TMPro.Examples;
+
 
 public class GameManager : MonoBehaviour
 {
     [Header("Variables")]
-    public int frames; 
+    public int[] frames;
+    public int frameCounter;
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
     
@@ -19,25 +19,29 @@ public class GameManager : MonoBehaviour
     public Slider timeBar;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI framesText;
+    public TextMeshProUGUI throwsText;
 
     private Score scoreScript;
     private Ball ball;
     
     public GameObject[] pins;
+    private Pin pinScript;
+    private Vector3[] positions;
 
-   
     private void Start()
     {
-        frames = 0;
+        pinScript = FindObjectOfType<Pin>();
         pins = GameObject.FindGameObjectsWithTag("Pin");
         ball = FindObjectOfType<Ball>();
-        scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();  
+        scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
+        positions = new Vector3[pins.Length];
     }
 
     private void Update()
     {          
         StartCoroutine(TimerDown());
-        framesText.text = "Frame: " + frames;
+        framesText.text = "Frame: " + frameCounter.ToString();
+        throwsText.text = "Throws: " + ball._throwsCount.ToString();
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
         CountPins();
     }
@@ -51,8 +55,10 @@ public class GameManager : MonoBehaviour
         if (ball._isThrown == true)
         {
             isTimerOn = false;
+            
         }   
         yield return new WaitForSeconds(1.0f);
+        
     }
 
     public void CountPins()
@@ -62,26 +68,33 @@ public class GameManager : MonoBehaviour
             if (pins[i].transform.eulerAngles.z > 30 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
             {
                 scoreScript._currentScore++;
-                pins[i].SetActive(false);              
+                pins[i].SetActive(false);
             }
+            
         }
 
     }
 
     public void ResetPins()
     {
-        if (ball._throws == 2)
+        foreach (GameObject pin in pins)
         {
-            for (int i = 0; i < pins.Length; i++)
-            {
-                pins[i].GetComponent<Pin>().ResetPin();
-                pins[i].SetActive(true);   
-            }
-    
+            pin.SetActive(true);
+            pin.GetComponent<Pin>().ResetPin();
         }
-
+  
     }
 
+
+    public void FrameSystem()
+    {
+        if (ball.isNextFrame == true)
+        {
+            frameCounter++;
+            frames[frameCounter] = frameCounter;
+        }
+        
+    }
 
     //private void RestartGame()
     //{

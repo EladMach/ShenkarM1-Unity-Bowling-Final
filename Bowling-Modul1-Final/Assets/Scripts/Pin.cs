@@ -24,13 +24,13 @@ public class Pin : MonoBehaviour
         initialRotation = transform.rotation;
     }
 
-
+  
     public void ResetPin()
     {
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;     
     }
 
 

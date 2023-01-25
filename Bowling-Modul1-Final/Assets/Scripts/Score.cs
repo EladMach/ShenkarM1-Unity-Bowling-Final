@@ -14,7 +14,7 @@ public class Score : MonoBehaviour
     public int totalScore;
     public int[] frameScore;
 
-    private bool isNextTurn = true;
+    private bool isNextFrame = false;
     public bool isStrike = false;
     
 
@@ -27,17 +27,18 @@ public class Score : MonoBehaviour
 
 
     private void Start()
-    {     
-        frameScoreText[0].text = "Frame1 Score: " + startScore.ToString();
-        frameScoreText[1].text = "Frame2 Score: " + startScore.ToString();
-        frameScoreText[2].text = "Frame3 Score: " + startScore.ToString();
-        frameScoreText[3].text = "Frame4 Score: " + startScore.ToString();
-        frameScoreText[4].text = "Frame5 Score: " + startScore.ToString();
-        frameScoreText[5].text = "Frame6 Score: " + startScore.ToString();
-        frameScoreText[6].text = "Frame7 Score: " + startScore.ToString();
-        frameScoreText[7].text = "Frame8 Score: " + startScore.ToString();
-        frameScoreText[8].text = "Frame9 Score: " + startScore.ToString();
-        frameScoreText[9].text = "Frame10 Score: " + startScore.ToString();
+    {   
+        startScore = 0; totalScore = 0;
+        frameScoreText[0].text = "Frame1 Score: ";
+        frameScoreText[1].text = "Frame2 Score: ";
+        frameScoreText[2].text = "Frame3 Score: ";
+        frameScoreText[3].text = "Frame4 Score: ";
+        frameScoreText[4].text = "Frame5 Score: ";
+        frameScoreText[5].text = "Frame6 Score: ";
+        frameScoreText[6].text = "Frame7 Score: ";
+        frameScoreText[7].text = "Frame8 Score: ";
+        frameScoreText[8].text = "Frame9 Score: ";
+        frameScoreText[9].text = "Frame10 Score: ";
 
         gameManager = FindObjectOfType<GameManager>();
         ball = FindObjectOfType<Ball>();    
@@ -58,12 +59,12 @@ public class Score : MonoBehaviour
         Turn1();
         Turn2();
         Turn3();
-        Turn4();
-        Turn5();
-        Turn6();
-        Turn7();
-        Turn8();
-        Turn9();
+        //Turn4();
+        //Turn5();
+        //Turn6();
+        //Turn7();
+        //Turn8();
+        //Turn9();
         
     }
 
@@ -71,111 +72,125 @@ public class Score : MonoBehaviour
     {
         Debug.Log("Strike!");
         isStrike = true;  
-        //gameManager.ResetPins();
-        //gameManager.frames++;
+        
     }
 
     public void Turn1()
-    {  
-        if (gameManager.frames == 1)
+    {
+        for (int i = 0; i < gameManager.frames.Length; i++)
         {
-            frameScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
-        }  
+            if (gameManager.frames[i] == 1)
+            {          
+                isNextFrame = true;
+                frameScoreText[0].text = "Turn1 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+                frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+                ResetScore();
+            }
+            
+        }
+        
     }
 
     public void Turn2()
-    {  
-        if (gameManager.frames == 2)
+    {
+        for (int i = 0; i < gameManager.frames.Length; i++)
         {
-            ResetScore();         
-            frameScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            if (gameManager.frames[i] == 2)
+            {   
+                isNextFrame = true;
+                frameScoreText[1].text = "Turn2 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+                frameScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+                ResetScore();
+            }
             
-            
-        }        
+        }
+        
     }
 
     public void Turn3()
     {
-        if (gameManager.frames == 3)
-        { 
-            ResetScore();
-            frameScoreText[2].text = "Turn3 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-           
-        }
-    }
-
-    public void Turn4()
-    {
-        if (gameManager.frames == 4)
+        for (int i = 0; i < gameManager.frames.Length; i++)
         {
-            ResetScore();
-            frameScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            if (gameManager.frames[i] == 3)
+            {
+                isNextFrame = true;
+                frameScoreText[2].text = "Turn3 Score: " + _currentScore;
+                frameScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+                ResetScore();
+            }
+            
         }
     }
 
-    public void Turn5()
+    //public void Turn4()
+    //{
+    //    if (gameManager.frames == 4)
+    //    {
+    //        ResetScore();
+    //        frameScoreText[3].text = "Turn4 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //        frameScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //    }
+    //}
+
+    //public void Turn5()
+    //{
+    //    if (gameManager.frames == 5)
+    //    {
+    //        ResetScore();
+    //        frameScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //        frameScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //    }
+    //}
+
+    //public void Turn6()
+    //{
+    //    if (gameManager.frames == 7)
+    //    {
+    //        ResetScore();
+    //        frameScoreText[5].text = "Turn6 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //        frameScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //    }
+    //}
+
+    //public void Turn7()
+    //{
+    //    if (gameManager.frames == 8)
+    //    {
+    //        ResetScore();
+    //        frameScoreText[6].text = "Turn7 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //        frameScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //    }
+    //}
+
+    //public void Turn8()
+    //{
+    //    if (gameManager.frames == 9)
+    //    {
+    //        ResetScore();
+    //        frameScoreText[7].text = "Turn8 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //        frameScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //    }
+    //}
+
+    //public void Turn9()
+    //{
+    //    if (gameManager.frames == 10)
+    //    {
+    //        ResetScore();
+    //        frameScoreText[8].text = "Turn9 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
+    //        frameScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
+    //    }
+    //}
+
+
+    public void ResetScore()
     {
-        if (gameManager.frames == 5)
-        {
-            ResetScore();
-            frameScoreText[4].text = "Turn5 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-        }
-    }
-
-    public void Turn6()
-    {
-        if (gameManager.frames == 7)
-        {
-            ResetScore();
-            frameScoreText[5].text = "Turn6 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-        }
-    }
-
-    public void Turn7()
-    {
-        if (gameManager.frames == 8)
-        {
-            ResetScore();
-            frameScoreText[6].text = "Turn7 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-        }
-    }
-
-    public void Turn8()
-    {
-        if (gameManager.frames == 9)
-        {
-            ResetScore();
-            frameScoreText[7].text = "Turn8 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
-        }
-    }
-
-    public void Turn9()
-    {
-        if (gameManager.frames == 10)
-        {
-            ResetScore();
-            frameScoreText[8].text = "Turn9 Score: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
-        }
-    }
-
-
-
-    private void ResetScore()
-    {
-        if (isNextTurn)
+        if (isNextFrame == true)
         {
             _currentScore = startScore;
-            isNextTurn = false;
+            isNextFrame = false;
         }
+        
     }
     
     public void CalculateFinalScore()
