@@ -56,7 +56,10 @@ public class GameManager : MonoBehaviour
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
         CountPins();
         TimerDown();
+        ResetTimer();
         RestartGame();
+
+        
     }
 
     public void TimerDown()
@@ -73,6 +76,14 @@ public class GameManager : MonoBehaviour
         {
             isTimerOn = true;
         }   
+    }
+
+    private void ResetTimer()
+    {
+        if (ball._isMoving == true)
+        {
+            timeBar.value = 10;
+        }
     }
 
     public void CountPins()

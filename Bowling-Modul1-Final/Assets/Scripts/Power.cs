@@ -46,7 +46,6 @@ public class Power : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             isPowerUp = false;
         }
- 
     }
     public IEnumerator PowerBarDown()
     {
@@ -56,9 +55,6 @@ public class Power : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             isPowerUp = true;
         }
-        
     }
-    
-    
   
 }  
