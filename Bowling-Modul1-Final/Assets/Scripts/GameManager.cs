@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < pins.Length; i++)
         {
-            if (pins[i].transform.eulerAngles.z > 30 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
+            if (pins[i].transform.eulerAngles.z > 50 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
             {
                 scoreScript._currentScore++;
                 pins[i].SetActive(false);
@@ -73,27 +73,24 @@ public class GameManager : MonoBehaviour
             
         }
 
+        
+
     }
 
     public void ResetPins()
     {
         foreach (GameObject pin in pins)
-        {
-            pin.SetActive(true);
+        {   
             pin.GetComponent<Pin>().ResetPin();
+            pin.SetActive(true);
         }
-  
     }
 
 
     public void FrameSystem()
     {
-        if (ball.isNextFrame == true)
-        {
-            frameCounter++;
-            frames[frameCounter] = frameCounter;
-        }
-        
+         frameCounter++;
+         frames[frameCounter] = frameCounter;     
     }
 
     //private void RestartGame()

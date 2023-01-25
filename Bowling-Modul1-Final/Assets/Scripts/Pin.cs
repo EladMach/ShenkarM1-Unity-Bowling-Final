@@ -21,7 +21,7 @@ public class Pin : MonoBehaviour
         ball = FindObjectOfType<Ball>();  
     
         initialPosition = transform.position;
-        initialRotation = transform.rotation;
+        initialRotation = Quaternion.identity;
     }
 
   

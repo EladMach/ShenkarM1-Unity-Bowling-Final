@@ -135,8 +135,11 @@ MonoBehaviour:
   _movementSpeed: 10
   _isThrown: 0
   _isMoving: 0
-  _throws: 0
+  isNextFrame: 0
+  _throws: 
+  _throwsCount: 0
   volume: 0.3
+  delay: 1.5
 --- !u!82 &9133269654945437233
 AudioSource:
   m_ObjectHideFlags: 0

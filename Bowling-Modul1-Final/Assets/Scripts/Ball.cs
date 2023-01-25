@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
     private Rigidbody rb;
     private Vector3 startingPosition;
     private Pin pinScript;
-    
+    private Score scoreScript;
     private GameManager gameManager;
     private Power powerScript;
     public AudioSource audioSource;
@@ -27,21 +27,19 @@ public class Ball : MonoBehaviour
     public float _movementSpeed = 30.0f;
     public bool _isThrown = false;
     public bool _isMoving = false;
-    public bool isNextFrame = false;
     public int[] _throws;
     public int _throwsCount;
-    public float volume = 0.3f;
-
+    public float volume = 0.3f; 
 
     private void Start()
     {
         _throwsCount = 0;
         _throws = new int[20];
-        rb = GetComponent<Rigidbody>();
-        startingPosition = new Vector3(0, 0.35f, -7.5f);       
+        rb = GetComponent<Rigidbody>();     
         powerScript = FindObjectOfType<Power>();
         pinScript = FindObjectOfType<Pin>();
         gameManager = FindObjectOfType<GameManager>();
+        scoreScript = FindObjectOfType<Score>();
         audioSource.clip = hitSound;
         audioSource.clip = throwSound;
         audioSource = GetComponent<AudioSource>();
@@ -72,13 +70,13 @@ public class Ball : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("ScoreGround"))
-        {
+        {           
             BallReset();
-            isNextFrame = true;
+            scoreScript.isNextFrame = true;
         }
         else
         {
-            isNextFrame = false;
+            scoreScript.isNextFrame = false;
         }
     }
 
@@ -92,8 +90,12 @@ public class Ball : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
-            gameManager.FrameSystem();
             ThrowsSystem();
+            if (_throwsCount == 3)
+            {
+                scoreScript.isNextFrame = true;
+                gameManager.ResetPins();
+            }
         }
 
     }
@@ -112,5 +114,5 @@ public class Ball : MonoBehaviour
         }
     }
 
-
+    
 }
