@@ -49,7 +49,6 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
         Throw();
     }
   

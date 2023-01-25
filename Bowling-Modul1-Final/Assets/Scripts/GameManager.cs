@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int frameCounter;
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
+    public bool isOptions = false;
     
 
     [Header("UI Elements")]
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI framesText;
     public TextMeshProUGUI throwsText;
     public TextMeshProUGUI totalScoreText;
+    public GameObject optionsPanel;
 
     private Score scoreScript;
     private Ball ball;
@@ -40,12 +42,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {          
-        TimerDown();
         framesText.text = "Frame: " + frameCounter.ToString();
         throwsText.text = "Throws: " + ball._throwsCount.ToString();
         totalScoreText.text = "Total Score: " + scoreScript.totalScore.ToString();
         timeText.text = "Timer: " + timeBar.value.ToString("F0");
         CountPins();
+        TimerDown();
+        RestartGame();
     }
 
     public void TimerDown()
@@ -61,13 +64,16 @@ public class GameManager : MonoBehaviour
         else if (ball._isThrown == false)
         {
             isTimerOn = true;
-        }
+        }   
+    }
+
+    public void ResetTimer()
+    {
         if (timeBar.value == 0)
         {
-            frameCounter++;
-            scoreScript.isNextFrame = true;
+            timeBar.value = 20;
+            TimerDown();
         }
-   
     }
 
     public void CountPins()
@@ -107,8 +113,24 @@ public class GameManager : MonoBehaviour
         if (scoreScript.isGameOver == true)
         {
             Debug.Log("GameEnded");
-            //SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0);
+
         }
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+        isOptions = true;
+        optionsPanel.SetActive(true);
+    }
+    public void ResumeGame()
+    {
+        isOptions = false;
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        optionsPanel.SetActive(false);
     }
 
 }
