@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
     public bool isOptions = false;
+    public float volume = 0.2f;
     
 
     [Header("UI Elements")]
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI throwsText;
     public TextMeshProUGUI totalScoreText;
     public GameObject optionsPanel;
+    
+    
 
     private Score scoreScript;
     private Ball ball;
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] pins;
     private Pin pinScript;
     private Vector3[] positions;
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -38,10 +42,12 @@ public class GameManager : MonoBehaviour
         ball = FindObjectOfType<Ball>();
         scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
         positions = new Vector3[pins.Length];
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
     }
 
     private void Update()
-    {          
+    {
         framesText.text = "Frame: " + frameCounter.ToString();
         throwsText.text = "Throws: " + ball._throwsCount.ToString();
         totalScoreText.text = "Total Score: " + scoreScript.totalScore.ToString();

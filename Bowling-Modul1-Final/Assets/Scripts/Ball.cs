@@ -29,7 +29,7 @@ public class Ball : MonoBehaviour
     public bool _isMoving = false;
     public int[] _throws;
     public int _throwsCount;
-    public float volume = 0.3f;
+    public float volume = 0.5f;
     
 
     private void Start()
