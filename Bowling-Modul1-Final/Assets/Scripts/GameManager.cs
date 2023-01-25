@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {          
-        StartCoroutine(TimerDown());
+        TimerDown();
         framesText.text = "Frame: " + frameCounter.ToString();
         throwsText.text = "Throws: " + ball._throwsCount.ToString();
         totalScoreText.text = "Total Score: " + scoreScript.totalScore.ToString();
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         CountPins();
     }
 
-    public IEnumerator TimerDown()
+    public void TimerDown()
     {
         if (isTimerOn == true)
         {
@@ -56,11 +56,18 @@ public class GameManager : MonoBehaviour
         }
         if (ball._isThrown == true)
         {
-            isTimerOn = false;
-            
-        }   
-        yield return new WaitForSeconds(1.0f);
-        
+            isTimerOn = false;   
+        }
+        else if (ball._isThrown == false)
+        {
+            isTimerOn = true;
+        }
+        if (timeBar.value == 0)
+        {
+            frameCounter++;
+            scoreScript.isNextFrame = true;
+        }
+   
     }
 
     public void CountPins()

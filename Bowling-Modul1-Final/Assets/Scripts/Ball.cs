@@ -29,7 +29,8 @@ public class Ball : MonoBehaviour
     public bool _isMoving = false;
     public int[] _throws;
     public int _throwsCount;
-    public float volume = 0.3f; 
+    public float volume = 0.3f;
+    
 
     private void Start()
     {
@@ -48,6 +49,7 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
+        timer += Time.deltaTime;
         Throw();
     }
   

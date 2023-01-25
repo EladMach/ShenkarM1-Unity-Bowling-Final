@@ -72,6 +72,7 @@ public class Score : MonoBehaviour
     {
         Debug.Log("Strike!");
         isStrike = true;
+        isNextFrame = true;
         gameManager.ResetPins();
         gameManager.frameCounter++;
     }

@@ -46,6 +46,10 @@ public class Power : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             isPowerUp = false;
         }
+        if (ball._isThrown == true)
+        {
+            isPowerUp = false;
+        }
 
     }
     public IEnumerator PowerBarDown()
