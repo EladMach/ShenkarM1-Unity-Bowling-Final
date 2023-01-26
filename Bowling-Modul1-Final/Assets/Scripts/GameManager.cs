@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
     private float fillSpeed = 1.0f;
     public bool isOptions = false;
     public float volume = 0.2f;
-    
+    public bool isStrike = false;
+    public bool isSpare = false;
+
 
     [Header("UI Elements")]
     public Slider timeBar;
@@ -58,8 +60,6 @@ public class GameManager : MonoBehaviour
         TimerDown();
         ResetTimer();
         RestartGame();
-
-        
     }
 
     public void TimerDown()
@@ -93,16 +93,8 @@ public class GameManager : MonoBehaviour
             if (pins[i].transform.eulerAngles.z > 30 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
             {
                 scoreScript._currentScore++;
-                pins[i].SetActive(false);
-                if (i == 10)
-                {
-                    scoreScript.Strike();
-                }
-                if (i == 10 && ball._throwsCount == 2)
-                {
-                    Debug.Log("Spare!");
-                }
-            }           
+                pins[i].SetActive(false);   
+            }
         }
     }
 
@@ -113,6 +105,7 @@ public class GameManager : MonoBehaviour
             pin.GetComponent<Pin>().ResetPin();
             pin.SetActive(true);
         }
+
         FrameSystem();
     }
 
@@ -126,13 +119,36 @@ public class GameManager : MonoBehaviour
         }        
     }
 
+    public void Strike()
+    {
+        foreach (int i in scoreScript.frameScore)
+        {
+            if (i == 10)
+            {
+                isStrike = true;
+                Debug.Log("Strike!");    
+            }
+        }
+    }
+
+    public void Spare()
+    {
+        foreach (int i in scoreScript.frameScore)
+        {
+            if (i == 10)
+            {
+                isSpare = true;
+                Debug.Log("Spare!");
+            }
+        }
+    }
+
     private void RestartGame()
     {
         if (scoreScript.isGameOver == true)
         {
             Debug.Log("GameEnded");
             SceneManager.LoadScene(0);
-
         }
     }
 

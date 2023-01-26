@@ -11,7 +11,6 @@ public class Power : MonoBehaviour
     public float powerValue;
     public float throwPower;
     public float fillSpeed = 20.0f;
-    public bool isCoroutineActive = true;
     
     private Ball ball;
 

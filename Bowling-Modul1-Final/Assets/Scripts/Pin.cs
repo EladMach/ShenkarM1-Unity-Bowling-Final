@@ -7,11 +7,9 @@ public class Pin : MonoBehaviour
     private Rigidbody rb;
     private Ball ball;
     private GameManager gameManager;
-    
-
     private Vector3 initialPosition;
     private Quaternion initialRotation;
-    
+
 
     void Start()
     {
@@ -23,7 +21,6 @@ public class Pin : MonoBehaviour
         initialPosition = transform.position;
         initialRotation = Quaternion.identity;
     }
-
   
     public void ResetPin()
     {

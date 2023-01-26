@@ -15,8 +15,7 @@ public class Score : MonoBehaviour
     public int[] frameScore;
     public bool isGameOver = false;
     public bool isNextFrame = false;
-    public bool isStrike = false;
-    
+
 
     [Header("UI Elements")]
     public TextMeshProUGUI[] frameScoreText;
@@ -69,11 +68,6 @@ public class Score : MonoBehaviour
         Frame10();
     }
 
-    public void Strike()
-    {
-        Debug.Log("Strike!");
-        isStrike = true;
-    }
 
     public void Frame1()
     {
@@ -83,10 +77,10 @@ public class Score : MonoBehaviour
             frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
         if (ball._throwsCount == 2 && isNextFrame)
-        {
+        { 
             ResetScore();
             gameManager.ResetPins();  
-            gameManager.frameCounter++; 
+            gameManager.frameCounter++;   
         }
 
     }
