@@ -15,6 +15,7 @@ public class Score : MonoBehaviour
     public int[] frameScore;
     public bool isGameOver = false;
     public bool isNextFrame = false;
+    public int moduloFrames;
 
 
     [Header("UI Elements")]
@@ -54,7 +55,6 @@ public class Score : MonoBehaviour
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
     }
 
- 
     public void TurnsSystem()
     {
         Frame1();
@@ -76,6 +76,7 @@ public class Score : MonoBehaviour
         {
             frameScoreText[0].text = "Frame 1: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore); 
+             
         }
         if (ball._throwsCount == 2 && isNextFrame)
         { 

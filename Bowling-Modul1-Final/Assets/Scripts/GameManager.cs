@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject pin in pins)
         {   
             pin.GetComponent<Pin>().ResetPin();
-            pin.SetActive(true);
+            pin.SetActive(true);     
         }
 
         FrameSystem();
@@ -122,14 +122,7 @@ public class GameManager : MonoBehaviour
 
     public void Strike()
     {
-        foreach (int i in scoreScript.frameScore)
-        {
-            if (i == 10)
-            {
-                isStrike = true;
-                Debug.Log("Strike!");    
-            }
-        }
+      
     }
 
     public void Spare()
