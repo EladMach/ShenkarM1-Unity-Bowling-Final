@@ -11,8 +11,6 @@ public class Power : MonoBehaviour
     public float powerValue;
     public float throwPower;
     public float fillSpeed = 30.0f;
-    
-    private Ball ball;
 
     [Header("UI Elements")]
     public Image fillImage;
@@ -24,7 +22,6 @@ public class Power : MonoBehaviour
     {   
         powerBarSlider = GameObject.Find("PowerBar").GetComponent<Slider>();
         powerBarSlider.value = Mathf.Clamp(powerBarSlider.value, 0.0f, 10.0f);
-        ball = FindObjectOfType<Ball>();
     }
 
     private void Update()

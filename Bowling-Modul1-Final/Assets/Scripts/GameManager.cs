@@ -12,13 +12,13 @@ public class GameManager : MonoBehaviour
     [Header("Variables")]
     public int[] frames;
     public int frameCounter;
-    private bool isTimerOn = true;
-    private float fillSpeed = 1.0f;
-    public bool isOptions = false;
     public float volume = 0.2f;
     public bool isStrike = false;
     public bool isSpare = false;
+    public bool isOptions = false;
 
+    private bool isTimerOn = true;
+    private float fillSpeed = 1.0f;
 
     [Header("UI Elements")]
     public Slider timeBar;
@@ -27,16 +27,17 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI throwsText;
     public TextMeshProUGUI totalScoreText;
     public TextMeshProUGUI playerNameText;
+
+    [Header("GameObjects")]
+    public GameObject[] pins;
     public GameObject optionsPanel;
-    
 
     private Score scoreScript;
-    private Ball ball;
-    
-    public GameObject[] pins;
+    private Ball ball;    
     private Pin pinScript;
     private Vector3[] positions;
     private AudioSource audioSource;
+    
 
     private void Start()
     {

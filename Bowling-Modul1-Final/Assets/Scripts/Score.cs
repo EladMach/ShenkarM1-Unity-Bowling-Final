@@ -24,10 +24,10 @@ public class Score : MonoBehaviour
     private Ball ball;
     
 
-
     private void Start()
     {   
         startScore = 0; totalScore = 0;
+
         frameScoreText[0].text = "Frame 1: ";
         frameScoreText[1].text = "Frame 2: ";
         frameScoreText[2].text = "Frame 3: ";
@@ -40,7 +40,8 @@ public class Score : MonoBehaviour
         frameScoreText[9].text = "Frame 10: ";
 
         gameManager = FindObjectOfType<GameManager>();
-        ball = FindObjectOfType<Ball>();    
+        ball = FindObjectOfType<Ball>();
+        
         PlayerPrefs.SetInt("StartScore", startScore);
         PlayerPrefs.Save();
     }

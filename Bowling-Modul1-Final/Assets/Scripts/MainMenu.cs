@@ -7,9 +7,13 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public bool isOption = false;
+    [Header("UI")]
     public TextMeshProUGUI highScoreText;
     [SerializeField] private TMP_InputField nameInput;
+
+    [Header("Variables")]
+    public bool isOption = false;
+
 
     private void Awake()
     {
@@ -19,7 +23,6 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         highScoreText.text = "HighScore: " + PlayerPrefs.GetInt("HighScore")  + PlayerPrefs.GetString("PlayerName");
-
     }
 
     public void ChangeName(string newName)

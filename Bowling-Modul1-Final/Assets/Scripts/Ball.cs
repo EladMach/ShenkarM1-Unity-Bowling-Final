@@ -14,24 +14,28 @@ public class Ball : MonoBehaviour
     private Score scoreScript;
     private GameManager gameManager;
     private Power powerScript;
-    public AudioSource audioSource;
-    public AudioClip hitSound;   
-    public AudioClip throwSound;
+    
 
 
     [Header("GameObjects")]
-    
-  
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip throwSound;
+
+
     [Header("Variables")]
     public float _powerMultiplier = 150f;
     public float _movementSpeed = 30.0f;
+    public float volume = 0.5f;
+    public float delay = 2f;
+    public float timer = 0;
     public bool _isThrown = false;
     public bool _isMoving = false;
     public int[] _throws;
     public int _throwsCount;
-    public float volume = 0.5f;
-    public float delay = 2f;
-    public float timer = 0;
+    
     
 
     private void Start()
