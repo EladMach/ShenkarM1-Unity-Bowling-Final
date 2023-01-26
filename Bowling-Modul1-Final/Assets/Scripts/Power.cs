@@ -10,7 +10,7 @@ public class Power : MonoBehaviour
     public bool isPowerUp = true;
     public float powerValue;
     public float throwPower;
-    public float fillSpeed = 20.0f;
+    public float fillSpeed = 30.0f;
     
     private Ball ball;
 
@@ -42,7 +42,7 @@ public class Power : MonoBehaviour
         while (isPowerUp)
         {
             powerBarSlider.value += fillSpeed * Time.deltaTime;
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.5f);
             isPowerUp = false;
         }
     }
@@ -51,7 +51,7 @@ public class Power : MonoBehaviour
         while (isPowerUp == false)
         {
             powerBarSlider.value -= fillSpeed * Time.deltaTime;
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.5f);
             isPowerUp = true;
         }
     }

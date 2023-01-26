@@ -30,6 +30,8 @@ public class Ball : MonoBehaviour
     public int[] _throws;
     public int _throwsCount;
     public float volume = 0.5f;
+    public float delay = 2f;
+    public float timer = 0;
     
 
     private void Start()
@@ -44,7 +46,7 @@ public class Ball : MonoBehaviour
         audioSource.clip = hitSound;
         audioSource.clip = throwSound;
         audioSource = GetComponent<AudioSource>();
-        startingPosition = new Vector3(0, 0.35f, -10f);    
+        startingPosition = new Vector3(0, 0.35f, -10f);
     }
 
     private void Update()
@@ -72,8 +74,8 @@ public class Ball : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("ScoreGround"))
-        {           
-            BallReset();
+        {
+            BallReset();        
             scoreScript.isNextFrame = true;
         }
         else
@@ -85,14 +87,14 @@ public class Ball : MonoBehaviour
     public void BallReset()
     {
         if (transform.position.z >= -4.0f)
-        {
+        {  
             _isThrown = false;
             _isMoving = false;
             transform.position = startingPosition;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
-            ThrowsSystem();  
+            ThrowsSystem(); 
         }
     }
 
@@ -109,6 +111,5 @@ public class Ball : MonoBehaviour
             audioSource.PlayOneShot(hitSound, volume);
         }
     }
-
-    
+  
 }

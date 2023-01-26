@@ -74,13 +74,13 @@ public class Score : MonoBehaviour
         if (ball._throwsCount == 1 && isNextFrame)
         {
             frameScoreText[0].text = "Frame 1: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore); 
         }
         if (ball._throwsCount == 2 && isNextFrame)
         { 
             ResetScore();
             gameManager.ResetPins();  
-            gameManager.frameCounter++;   
+            gameManager.frameCounter++;
         }
 
     }

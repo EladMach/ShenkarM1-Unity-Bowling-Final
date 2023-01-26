@@ -5861,7 +5861,7 @@ MonoBehaviour:
   isPowerUp: 1
   powerValue: 0
   throwPower: 0
-  fillSpeed: 6
+  fillSpeed: 7
   fillImage: {fileID: 201811473}
   powerBarSlider: {fileID: 1117765028}
   powerText: {fileID: 1858746062}
