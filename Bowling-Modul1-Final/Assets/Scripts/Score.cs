@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
+
 
 public class Score : MonoBehaviour
 {
@@ -15,8 +15,6 @@ public class Score : MonoBehaviour
     public int[] frameScore;
     public bool isGameOver = false;
     public bool isNextFrame = false;
-    public int moduloFrames;
-
 
     [Header("UI Elements")]
     public TextMeshProUGUI[] frameScoreText;
@@ -49,13 +47,13 @@ public class Score : MonoBehaviour
 
     private void Update()
     {
-        TurnsSystem();
+        FramesSystem();
         CalculateFinalScore();
         HighScore();
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
     }
 
-    public void TurnsSystem()
+    public void FramesSystem()
     {
         Frame1();
         Frame2();
@@ -75,15 +73,15 @@ public class Score : MonoBehaviour
         if (ball._throwsCount == 1 && isNextFrame)
         {
             frameScoreText[0].text = "Frame 1: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
-            frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore); 
-             
+            frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);      
         }
         if (ball._throwsCount == 2 && isNextFrame)
         { 
             ResetScore();
             gameManager.ResetPins();  
-            gameManager.frameCounter++;
+            gameManager.frameCounter++;   
         }
+
 
     }
 
@@ -200,6 +198,7 @@ public class Score : MonoBehaviour
         {
             frameScoreText[8].text = "Frame 9: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+
         }
         if (ball._throwsCount == 18 && isNextFrame)
         {
@@ -223,6 +222,17 @@ public class Score : MonoBehaviour
             isGameOver = true;
         }
     }
+
+    //public void Strike()
+    //{
+    //    foreach (int score in frameScore)
+    //    {
+    //        if (gameManager.isEven == true && score == 10)
+    //        {
+    //            Debug.Log("Strike!");
+    //        }
+    //    }
+    //}
 
     public void ResetScore()
     {

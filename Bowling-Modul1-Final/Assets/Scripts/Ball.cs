@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using JetBrains.Annotations;
+
 
 public class Ball : MonoBehaviour
 {
@@ -15,8 +15,6 @@ public class Ball : MonoBehaviour
     private GameManager gameManager;
     private Power powerScript;
     
-
-
     [Header("GameObjects")]
 
     [Header("Audio")]
@@ -35,7 +33,6 @@ public class Ball : MonoBehaviour
     public bool _isMoving = false;
     public int[] _throws;
     public int _throwsCount;
-    
     
 
     private void Start()
@@ -65,7 +62,7 @@ public class Ball : MonoBehaviour
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * _movementSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || gameManager.timeBar.value == 0)
         {       
             rb.AddForce(Vector3.forward * powerScript.powerValue * _powerMultiplier);
             audioSource.PlayOneShot(throwSound, volume);
@@ -77,10 +74,13 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("ScoreGround"))
+        timer += Time.deltaTime;
+
+        if (other.gameObject.CompareTag("ScoreGround") && delay <= timer)
         {
             BallReset();        
             scoreScript.isNextFrame = true;
+            timer = 0;
         }
         else
         {

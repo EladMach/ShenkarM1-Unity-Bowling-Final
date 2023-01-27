@@ -17,9 +17,12 @@ public class Power : MonoBehaviour
     public Slider powerBarSlider;
     public TextMeshProUGUI powerText;
 
+    private Ball ball;
+
 
     private void Start()
     {   
+        ball = FindObjectOfType<Ball>();
         powerBarSlider = GameObject.Find("PowerBar").GetComponent<Slider>();
         powerBarSlider.value = Mathf.Clamp(powerBarSlider.value, 0.0f, 10.0f);
     }
@@ -31,6 +34,7 @@ public class Power : MonoBehaviour
 
         StartCoroutine(PowerBarUp());
         StartCoroutine(PowerBarDown());
+
 
     }
 

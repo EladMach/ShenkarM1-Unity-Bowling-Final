@@ -4,8 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor.AnimatedValues;
-using UnityEngine.EventSystems;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +15,7 @@ public class GameManager : MonoBehaviour
     public bool isStrike = false;
     public bool isSpare = false;
     public bool isOptions = false;
+    public bool isEven;
 
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        isEven = ball._throwsCount % 2 == 0;
         framesText.text = "Frame: " + frameCounter.ToString();
         throwsText.text = "Throws: " + ball._throwsCount.ToString();
         totalScoreText.text = "Total Score: " + scoreScript.totalScore.ToString();
@@ -91,12 +92,13 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < pins.Length; i++)
         {
-            if (pins[i].transform.eulerAngles.z > 30 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
+            if (pins[i].transform.eulerAngles.z > 20 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
             {
                 scoreScript._currentScore++;
                 pins[i].SetActive(false);   
             }
         }
+        
     }
 
     public void ResetPins()
@@ -107,34 +109,17 @@ public class GameManager : MonoBehaviour
             pin.SetActive(true);     
         }
 
-        FrameSystem();
+        FrameCounterSystem();
     }
 
 
-    public void FrameSystem()
+    public void FrameCounterSystem()
     {
         if (scoreScript.isNextFrame == true)
         {
             frameCounter++;
             frames[frameCounter] = frameCounter;
         }        
-    }
-
-    public void Strike()
-    {
-      
-    }
-
-    public void Spare()
-    {
-        foreach (int i in scoreScript.frameScore)
-        {
-            if (i == 10)
-            {
-                isSpare = true;
-                Debug.Log("Spare!");
-            }
-        }
     }
 
     private void RestartGame()
