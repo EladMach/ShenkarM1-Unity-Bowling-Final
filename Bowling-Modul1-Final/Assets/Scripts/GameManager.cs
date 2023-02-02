@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
         CountPins();
         TimerDown();
         ResetTimer();
-        RestartGame();
     }
 
     public void TimerDown()
@@ -97,8 +96,7 @@ public class GameManager : MonoBehaviour
                 scoreScript._currentScore++;
                 pins[i].SetActive(false);   
             }
-        }
-        
+        }  
     }
 
     public void ResetPins()
@@ -106,7 +104,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject pin in pins)
         {   
             pin.GetComponent<Pin>().ResetPin();
-            pin.SetActive(true);     
+            pin.SetActive(true);
         }
 
         FrameCounterSystem();
@@ -121,14 +119,10 @@ public class GameManager : MonoBehaviour
             frames[frameCounter] = frameCounter;
         }        
     }
-
-    private void RestartGame()
+    public void RestartGame()
     {
-        if (scoreScript.isGameOver == true)
-        {
-            Debug.Log("GameEnded");
-            SceneManager.LoadScene(0);
-        }
+        Debug.Log("GameEnded");
+        SceneManager.LoadScene(0);
     }
 
     public void PauseGame()
