@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public bool isStrike = false;
     public bool isSpare = false;
     public bool isOptions = false;
-    public bool isEven;
+    public int pinsCount;
 
     private bool isTimerOn = true;
     private float fillSpeed = 1.0f;
@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI framesText;
     public TextMeshProUGUI throwsText;
     public TextMeshProUGUI totalScoreText;
-    public TextMeshProUGUI playerNameText;
+    public TextMeshProUGUI player1NameText;
+    public TextMeshProUGUI player2NameText;
 
     [Header("GameObjects")]
     public GameObject[] pins;
@@ -38,9 +39,11 @@ public class GameManager : MonoBehaviour
     private Vector3[] positions;
     private AudioSource audioSource;
     
+    
 
     private void Start()
     {
+        pinsCount = 0;
         pinScript = FindObjectOfType<Pin>();
         pins = GameObject.FindGameObjectsWithTag("Pin");
         ball = FindObjectOfType<Ball>();
@@ -48,12 +51,13 @@ public class GameManager : MonoBehaviour
         positions = new Vector3[pins.Length];
         audioSource = GetComponent<AudioSource>();
         audioSource.Play();
-        playerNameText.text = "Player: " + PlayerPrefs.GetString("PlayerName");
+        player1NameText.text = "Player 1: " + PlayerPrefs.GetString("Player1Name");
+        player2NameText.text = "Player 2: " + PlayerPrefs.GetString("Player2Name");
     }
 
     private void Update()
     {
-        isEven = ball._throwsCount % 2 == 0;
+        
         framesText.text = "Frame: " + frameCounter.ToString();
         throwsText.text = "Throws: " + ball._throwsCount.ToString();
         totalScoreText.text = "Total Score: " + scoreScript.totalScore.ToString();
@@ -89,12 +93,13 @@ public class GameManager : MonoBehaviour
 
     public void CountPins()
     {
-        for (int i = 0; i < pins.Length; i++)
+        foreach (GameObject pin in pins)
         {
-            if (pins[i].transform.eulerAngles.z > 20 && pins[i].transform.eulerAngles.z < 355 && pins[i].activeSelf)
+            if (pin.transform.eulerAngles.z > 20 && pin.transform.eulerAngles.z < 355 && pin.activeSelf)
             {
                 scoreScript._currentScore++;
-                pins[i].SetActive(false);   
+                pinsCount++;
+                pin.SetActive(false);   
             }
         }  
     }
@@ -119,6 +124,7 @@ public class GameManager : MonoBehaviour
             frames[frameCounter] = frameCounter;
         }        
     }
+
     public void RestartGame()
     {
         Debug.Log("GameEnded");
@@ -138,6 +144,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         optionsPanel.SetActive(false);
+        scoreScript.player1winText.gameObject.SetActive(false);
+        scoreScript.player2winText.gameObject.SetActive(false);
     }
 
     public void BackToMainMenu()
@@ -145,6 +153,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         AudioListener.pause = false;
         isOptions = false;
+        SceneManager.LoadScene(0);
+    }
+
+    public void GameOver()
+    {
         SceneManager.LoadScene(0);
     }
 }

@@ -82,10 +82,7 @@ public class Ball : MonoBehaviour
             scoreScript.isNextFrame = true;
             timer = 0;
         }
-        else
-        {
-            scoreScript.isNextFrame = false;
-        }
+        
     }
 
     public void BallReset()
@@ -98,7 +95,8 @@ public class Ball : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
-            ThrowsSystem(); 
+            ThrowsSystem();
+            scoreScript.isNextFrame = false;
         }
     }
 

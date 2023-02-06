@@ -11,34 +11,32 @@ public class Score : MonoBehaviour
     [Header("Variables")]
     private int startScore;
     public int _currentScore;
+    public int player1Score;
+    public int player2Score;
     public int totalScore;
     public int[] frameScore;
     public bool isGameOver = false;
     public bool isNextFrame = false;
 
     [Header("UI Elements")]
-    public TextMeshProUGUI[] frameScoreText;
+    public TextMeshProUGUI player1ScoreText;
+    public TextMeshProUGUI player2ScoreText;
+    public TextMeshProUGUI player1winText;
+    public TextMeshProUGUI player2winText;
+    public Image spriteImage;
+
 
     private GameManager gameManager;
     private Ball ball;
+    private AudioSource audioSource;
     
 
     private void Start()
     {   
         startScore = 0; totalScore = 0;
 
-        frameScoreText[0].text = "Frame 1: ";
-        frameScoreText[1].text = "Frame 2: ";
-        frameScoreText[2].text = "Frame 3: ";
-        frameScoreText[3].text = "Frame 4: ";
-        frameScoreText[4].text = "Frame 5: ";
-        frameScoreText[5].text = "Frame 6: ";
-        frameScoreText[6].text = "Frame 7: ";
-        frameScoreText[7].text = "Frame 8: ";
-        frameScoreText[8].text = "Frame 9: ";
-        frameScoreText[9].text = "Frame 10: ";
-
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
         ball = FindObjectOfType<Ball>();
         
         PlayerPrefs.SetInt("StartScore", startScore);
@@ -51,6 +49,8 @@ public class Score : MonoBehaviour
         CalculateFinalScore();
         HighScore();
         PlayerPrefs.SetInt("CurrentScore", _currentScore);
+        Player1Score();
+        Player2Score();
     }
 
     public void FramesSystem()
@@ -70,39 +70,64 @@ public class Score : MonoBehaviour
 
     public void Frame1()
     {
+        player1ScoreText.text = "Player 1 Score: " + player1Score.ToString();
+
         if (ball._throwsCount == 1 && isNextFrame)
         {
-            frameScoreText[0].text = "Frame 1: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[0] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            
         }
         if (ball._throwsCount == 2 && isNextFrame)
         { 
             ResetScore();
             gameManager.ResetPins();  
-            gameManager.frameCounter++; 
+            gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(false);
+            gameManager.player2NameText.gameObject.SetActive(true);
+
+            if (frameScore[0] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
+            
         }
+        
     }
 
     public void Frame2()
     {
+        player2ScoreText.text = "Player 2 Score: " + player2Score.ToString();
+
         if (ball._throwsCount == 3 && isNextFrame)
         {
-            frameScoreText[1].text = "Frame 2: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[1] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
+            
         }
         if (ball._throwsCount == 4 && isNextFrame)
         { 
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(true);
+            gameManager.player2NameText.gameObject.SetActive(false);
+
+            if (frameScore[1] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
     }
 
     public void Frame3()
     {
+        player1ScoreText.text = "Player 1 Score: " + player1Score.ToString();
+
         if (ball._throwsCount == 5 && isNextFrame)
         {
-            frameScoreText[2].text = "Frame 3: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[2] = PlayerPrefs.GetInt("CurrentScore", _currentScore);   
         }
         if (ball._throwsCount == 6 && isNextFrame)
@@ -110,15 +135,24 @@ public class Score : MonoBehaviour
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(false);
+            gameManager.player2NameText.gameObject.SetActive(true);
+            if (frameScore[2] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
         
     }
 
     public void Frame4()
     {
+        player2ScoreText.text = "Player 2 Score: " + player2Score.ToString();
+
         if (ball._throwsCount == 7 && isNextFrame)
         {
-            frameScoreText[3].text = "Frame 4: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[3] = PlayerPrefs.GetInt("CurrentScore", _currentScore);           
         }
         if (ball._throwsCount == 8 && isNextFrame)
@@ -126,15 +160,25 @@ public class Score : MonoBehaviour
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(true);
+            gameManager.player2NameText.gameObject.SetActive(false);
+
+            if (frameScore[3] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
         
     }
 
     public void Frame5()
     {
+        player1ScoreText.text = "Player 1 Score: " + player1Score.ToString();
+
         if (ball._throwsCount == 9 && isNextFrame)
         {
-            frameScoreText[4].text = "Frame 5: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[4] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
         if (ball._throwsCount == 10 && isNextFrame)
@@ -142,14 +186,24 @@ public class Score : MonoBehaviour
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(false);
+            gameManager.player2NameText.gameObject.SetActive(true);
+
+            if (frameScore[4] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
     }
 
     public void Frame6()
     {
+        player2ScoreText.text = "Player 2 Score: " + player2Score.ToString();
+
         if (ball._throwsCount == 11 && isNextFrame)
         {
-            frameScoreText[5].text = "Frame 6: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[5] = PlayerPrefs.GetInt("CurrentScore", _currentScore);    
         }
         if (ball._throwsCount == 12 && isNextFrame)
@@ -157,14 +211,24 @@ public class Score : MonoBehaviour
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(true);
+            gameManager.player2NameText.gameObject.SetActive(false);
+
+            if (frameScore[5] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
     }
 
     public void Frame7()
     {
+        player1ScoreText.text = "Player 1 Score: " + player1Score.ToString();
+
         if (ball._throwsCount == 13 && isNextFrame)
         {
-            frameScoreText[6].text = "Frame 7: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[6] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
         if (ball._throwsCount == 14 && isNextFrame)
@@ -172,14 +236,24 @@ public class Score : MonoBehaviour
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(false);
+            gameManager.player2NameText.gameObject.SetActive(true);
+
+            if (frameScore[6] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
     }
 
     public void Frame8()
     {
+        player2ScoreText.text = "Player 2 Score: " + player2Score.ToString();
+
         if (ball._throwsCount == 15 && isNextFrame)
         {
-            frameScoreText[7].text = "Frame 8: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[7] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
         if (ball._throwsCount == 16 && isNextFrame)
@@ -187,14 +261,24 @@ public class Score : MonoBehaviour
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(true);
+            gameManager.player2NameText.gameObject.SetActive(false);
+
+            if (frameScore[7] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
     }
 
     public void Frame9()
     {
+        player1ScoreText.text = "Player 1 Score: " + player1Score.ToString();
+
         if (ball._throwsCount == 17 && isNextFrame)
         {
-            frameScoreText[8].text = "Frame 9: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[8] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
 
         }
@@ -203,19 +287,38 @@ public class Score : MonoBehaviour
             ResetScore();
             gameManager.ResetPins();
             gameManager.frameCounter++;
+            gameManager.player1NameText.gameObject.SetActive(false);
+            gameManager.player2NameText.gameObject.SetActive(true);
+
+            if (frameScore[8] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
         }
     }
 
     public void Frame10()
     {
+        player2ScoreText.text = "Player 2 Score: " + player2Score.ToString();
+
         if (ball._throwsCount == 19 && isNextFrame)
         {
-            frameScoreText[9].text = "Frame 10: " + PlayerPrefs.GetInt("CurrentScore", _currentScore);
             frameScore[9] = PlayerPrefs.GetInt("CurrentScore", _currentScore);
         }
         if (ball._throwsCount == 20 && isNextFrame)
         {
+            gameManager.player1NameText.gameObject.SetActive(true);
+            gameManager.player2NameText.gameObject.SetActive(false);
             
+            if (frameScore[9] == 10)
+            {
+                Debug.Log("Spare!");
+                StartCoroutine(SpareImage());
+                audioSource.Play();
+            }
+            gameManager.GameOver();
         }
     }
 
@@ -235,6 +338,16 @@ public class Score : MonoBehaviour
         PlayerPrefs.SetInt("FinalScore", totalScore);
     }
 
+    public void Player1Score()
+    {
+        player1Score = frameScore[0] + frameScore[2] + frameScore[4] + frameScore[6] + frameScore[8];
+    }
+    public void Player2Score()
+    {
+        player2Score = frameScore[1] + frameScore[3] + frameScore[5] + frameScore[7] + frameScore[9];
+    }
+
+
     public void HighScore()
     {
         if (PlayerPrefs.GetInt("HighScore") < totalScore)
@@ -243,4 +356,24 @@ public class Score : MonoBehaviour
         }
     }
 
- }
+    public void EndGame()
+    {
+        if (player1Score > player2Score)
+        {
+            player1winText.gameObject.SetActive(true);
+        }
+        if (player1Score < player2Score)
+        {
+            player2winText.gameObject.SetActive(true);
+        }
+    }
+
+    IEnumerator SpareImage()
+    {
+        spriteImage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        spriteImage.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+    }
+
+}

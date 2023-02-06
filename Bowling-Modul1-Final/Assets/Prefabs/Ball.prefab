@@ -131,7 +131,7 @@ MonoBehaviour:
   audioSource: {fileID: 9133269654945437233}
   hitSound: {fileID: 8300000, guid: f1490fd449560744d9533385c19275d2, type: 3}
   throwSound: {fileID: 8300000, guid: 3cd723ca12167ba4cbcaf955b181cb05, type: 3}
-  _powerMultiplier: 120
+  _powerMultiplier: 125
   _movementSpeed: 10
   volume: 0.3
   delay: 2

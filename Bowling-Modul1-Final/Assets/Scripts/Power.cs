@@ -35,7 +35,6 @@ public class Power : MonoBehaviour
         StartCoroutine(PowerBarUp());
         StartCoroutine(PowerBarDown());
 
-
     }
 
     public IEnumerator PowerBarUp()
