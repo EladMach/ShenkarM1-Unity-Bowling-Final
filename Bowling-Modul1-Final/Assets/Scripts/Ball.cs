@@ -15,13 +15,10 @@ public class Ball : MonoBehaviour
     private GameManager gameManager;
     private Power powerScript;
     
-    [Header("GameObjects")]
-
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip hitSound;
     public AudioClip throwSound;
-
 
     [Header("Variables")]
     public float _powerMultiplier = 150f;
@@ -60,6 +57,7 @@ public class Ball : MonoBehaviour
         if (_isMoving == false)
         {
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * _movementSpeed * Time.deltaTime);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.4f, 1.4f), transform.position.y, transform.position.z);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) || gameManager.timeBar.value == 0)

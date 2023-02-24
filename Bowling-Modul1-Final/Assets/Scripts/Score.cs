@@ -137,6 +137,7 @@ public class Score : MonoBehaviour
             gameManager.frameCounter++;
             gameManager.player1NameText.gameObject.SetActive(false);
             gameManager.player2NameText.gameObject.SetActive(true);
+
             if (frameScore[2] == 10)
             {
                 Debug.Log("Spare!");

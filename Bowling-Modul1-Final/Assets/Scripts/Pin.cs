@@ -10,7 +10,6 @@ public class Pin : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
 
-
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();

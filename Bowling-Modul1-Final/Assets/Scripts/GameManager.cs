@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
         framesText.text = "Frame: " + frameCounter.ToString();
         throwsText.text = "Throws: " + ball._throwsCount.ToString();
         totalScoreText.text = "Total Score: " + scoreScript.totalScore.ToString();
@@ -115,7 +114,6 @@ public class GameManager : MonoBehaviour
         FrameCounterSystem();
     }
 
-
     public void FrameCounterSystem()
     {
         if (scoreScript.isNextFrame == true)
@@ -138,6 +136,7 @@ public class GameManager : MonoBehaviour
         isOptions = true;
         optionsPanel.SetActive(true);
     }
+
     public void ResumeGame()
     {
         isOptions = false;

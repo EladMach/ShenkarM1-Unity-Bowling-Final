@@ -19,7 +19,6 @@ public class Power : MonoBehaviour
 
     private Ball ball;
 
-
     private void Start()
     {   
         ball = FindObjectOfType<Ball>();
@@ -34,7 +33,6 @@ public class Power : MonoBehaviour
 
         StartCoroutine(PowerBarUp());
         StartCoroutine(PowerBarDown());
-
     }
 
     public IEnumerator PowerBarUp()
